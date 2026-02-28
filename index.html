@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 北海道家族旅行手帳</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        journal: {
+                            bg: '#fcf9f2',      // 米黃紙張底色
+                            card: '#ffffff',    // 純白紙張
+                            ink: '#594a4e',     // 深褐墨水色
+                            brown: '#a68a80',   // 淺棕色
+                            accent: '#d48872',  // 強調色 (櫻花粉橘)
+                            blue: '#8db5be',    // 輔助色1 (海洋藍)
+                            green: '#9eb896',   // 輔助色2 (森林綠)
+                            line: '#e0d8cc'     // 線條色
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Maru Gothic"', '"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 手帳風格自訂 CSS */
+        body {
+            background-color: #fcf9f2;
+            color: #594a4e;
+            background-image: 
+                linear-gradient(#e0d8cc 1px, transparent 1px);
+            background-size: 100% 28px;
+            background-attachment: local;
+        }
+
+        /* 隱藏滾動條但保持可滾動 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #a68a80;
+            border-radius: 10px;
+        }
+
+        /* 淡入動畫 */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 紙膠帶裝飾 */
+        .tape {
+            position: absolute;
+            width: 80px;
+            height: 25px;
+            background-color: rgba(141, 181, 190, 0.4); /* journal-blue 帶透明 */
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            z-index: 10;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .tape-accent {
+            background-color: rgba(212, 136, 114, 0.4); /* journal-accent */
+            transform: translateX(-50%) rotate(2deg);
+        }
+
+        /* 手帳卡片 */
+        .journal-card {
+            background: #ffffff;
+            border: 1px dashed #a68a80;
+            border-radius: 12px;
+            padding: 1rem;
+            position: relative;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.03);
+            margin-bottom: 1.5rem;
+        }
+
+        /* 時間軸線條 */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background: #e0d8cc;
+            z-index: 0;
+        }
+
+        /* Accordion 重置與樣式 */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Checkbox 樣式 */
+        .round-checkbox {
+            appearance: none;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid #a68a80;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .round-checkbox:checked {
+            background-color: #d48872;
+            border-color: #d48872;
+        }
+        .round-checkbox:checked::after {
+            content: '\f00c';
+            font-family: 'FontAwesome';
+            color: white;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-journal-accent selection:text-white pb-24">
+
+    <!-- 頂部標題列 -->
+    <header class="sticky top-0 z-40 bg-journal-bg/95 backdrop-blur shadow-sm border-b border-journal-line py-3 px-4 flex justify-between items-center max-w-4xl mx-auto">
+        <div class="flex flex-col">
+            <h1 class="text-lg font-bold text-journal-ink tracking-widest"><i class="fa-solid fa-plane-departure mr-2 text-journal-accent"></i>北海道家族旅行</h1>
+            <span class="text-xs text-journal-brown font-medium">2026.08.19 ~ 08.28 ✈️ 4大4小</span>
+        </div>
+        <div class="w-8 h-8 bg-journal-blue/20 rounded-full flex items-center justify-center text-journal-blue">
+            <i class="fa-solid fa-cloud-sun"></i>
+        </div>
+    </header>
+
+    <!-- 主內容區 (限制最大寬度以符合手機/手帳比例) -->
+    <main class="max-w-4xl mx-auto p-4 md:p-6 relative" id="main-content">
+        
+        <!-- 分頁 1: 行程 (Plan) -->
+        <section id="tab-plan" class="tab-content fade-in">
+            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
+                <i class="fa-solid fa-route mr-2"></i>10天探索日誌
+            </h2>
+            
+            <div class="relative">
+                <div class="timeline-line"></div>
+                
+                <!-- Day 1 -->
+                <div class="relative z-10 pl-12 mb-8">
+                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D1</div>
+                    <div class="journal-card">
+                        <div class="tape"></div>
+                        <h3 class="text-lg font-bold mb-1">8/19 (三) 抵達札幌，輕鬆安頓</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>新千歲機場 ➔ 札幌市區</div>
+                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Ibis%20Styles%20Sapporo&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">行程：</span>抵達新千歲機場 ➔ 領車/搭車前往札幌 ➔ 入住 宜必思酒店。</li>
+                            <li><span class="font-bold text-journal-accent">活動：</span>第一天不排太緊，晚上全家散步去吃碗熱騰騰的拉麵或湯咖哩，感受北海道涼爽的晚風。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="relative z-10 pl-12 mb-8">
+                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D2</div>
+                    <div class="journal-card">
+                        <h3 class="text-lg font-bold mb-1">8/20 (四) 親子大放電 ＆ 專心購物</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>瀧野鈴蘭丘陵公園 ➔ 北廣島</div>
+                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=瀧野鈴蘭丘陵公園&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">上午：</span>前往<span class="font-bold">瀧野鈴蘭丘陵公園</span>。非常厲害的國營公園，10歲哥哥和8歲妹妹剛好是可以盡情挑戰巨型彈跳床、超長溜滑梯與森林迷宮的年紀！</li>
+                            <li><span class="font-bold text-journal-accent">下午：</span>前往<span class="font-bold">北廣島三井 Outlet Park</span>。運動品牌齊全，尋找 US 10 號 Nike 球鞋，或是 HOKA、On 等熱門跑鞋。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="relative z-10 pl-12 mb-8">
+                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D3</div>
+                    <div class="journal-card">
+                        <div class="tape tape-accent"></div>
+                        <h3 class="text-lg font-bold mb-1">8/21 (五) 札幌市區童話體驗</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>白色戀人公園 ➔ 北海道神宮</div>
+                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Shiroi%20Koibito%20Park&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">上午：</span><span class="font-bold">白色戀人公園</span>。室內外充滿歐風童話感，讓孩子們體驗動手畫餅乾，全家拍可愛合照。</li>
+                            <li><span class="font-bold text-journal-accent">下午：</span><span class="font-bold">北海道神宮</span>散步，接著到大通公園或狸小路商圈做最後的市區採買。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="relative z-10 pl-12 mb-8">
+                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D4</div>
+                    <div class="journal-card">
+                        <h3 class="text-lg font-bold mb-1">8/22 (六) 浪漫小樽</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>小樽運河 ➔ 堺町通</div>
+                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Otaru%20Canal&t=&z=14&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">下午：</span>驅車前往小樽（車程約 45 分鐘，很適合作為大團體的第一個暖身景點）。</li>
+                            <li><span class="font-bold text-journal-accent">活動：</span>漫步小樽運河，逛堺町通的音樂盒堂、北一硝子館。孩子對玻璃藝品會覺得新奇，大人一起品嚐 LeTAO 雙層起司蛋糕。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="relative z-10 pl-12 mb-8">
+                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D5</div>
+                    <div class="journal-card">
+                        <div class="tape tape-accent"></div>
+                        <h3 class="text-lg font-bold mb-1">8/23 (日) 長途遠征！富良野與美瑛</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>四季彩之丘 ➔ 青池 ➔ 精靈露臺</div>
+                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Shikisaisai%20no%20Oka&t=&z=10&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">全天：</span>車程較長（單趟約 2.5 小時），吃飽早餐提早出發。</li>
+                            <li><span class="font-bold text-journal-blue">上午：</span><span class="font-bold">四季彩之丘</span>搭乘遊園拖拉機看花海，草泥馬牧場餵食。</li>
+                            <li><span class="font-bold text-journal-accent">下午：</span>探訪<span class="font-bold">白金青池</span>，接著前往<span class="font-bold">森林精靈露臺</span>。傍晚點燈後的小木屋非常夢幻，結束後開車回札幌。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div class="relative z-10 pl-12 mb-8">
+                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D6</div>
+                    <div class="journal-card">
+                        <h3 class="text-lg font-bold mb-1">8/24 (一) 自然生態與自行車微風</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>莫埃來沼公園 ➔ F-Village</div>
+                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Moerenuma%20Park&t=&z=12&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">上午：</span><span class="font-bold">莫埃來沼公園</span>。超大型藝術公園，兩家人租腳踏車環園，爬玻璃金字塔和人造山，腹地極大。</li>
+                            <li><span class="font-bold text-journal-accent">下午：</span><span class="font-bold">F-Village</span> (日本火腿鬥士隊新主場)。戶外兒童遊樂設施、草皮，大人也能在商場休息吃美食。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 7 -->
+                <div class="relative z-10 pl-12 mb-8">
+                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D7</div>
+                    <div class="journal-card">
+                        <div class="tape"></div>
+                        <h3 class="text-lg font-bold mb-1">8/25 (二) 札幌市內彈性行程</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>電視塔 / 動物園 / 自由採買</div>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">全天：</span>前幾天緊湊行程的緩衝日。可以安排札幌電視塔看風景、圓山動物園，或各自在市區彈性行動、採買未齊物品。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 8 -->
+                <div class="relative z-10 pl-12 mb-8">
+                    <div class="absolute left-1 top-1 w-8 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md py-1 px-2 w-auto whitespace-nowrap z-20" style="left: -1rem;">🎇 D8</div>
+                    <div class="journal-card mt-4 border-gray-400">
+                        <h3 class="text-lg font-bold mb-1 text-gray-800">8/26 (三) 洞爺湖頂級溫泉與煙火</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>洞爺湖 ➔ 乃之風</div>
+                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=The%20Lake%20View%20Toya%20Nonokaze%20Resort&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">上午：</span>寄放行李，帶輕便衣物驅車前往洞爺湖（車程約 2 小時）。</li>
+                            <li><span class="font-bold text-journal-accent">下午：</span>搭乘洞爺湖遊覽船或有珠山纜車。</li>
+                            <li><span class="font-bold text-journal-blue">傍晚：</span>入住<span class="font-bold">洞爺乃之風</span>。享受高水準自助餐。</li>
+                            <li><span class="font-bold text-orange-600">晚上 (20:45)：</span>重頭戲！換上浴衣，在全湖景房間或頂樓露天溫泉欣賞洞爺湖水上煙火大會。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 9 -->
+                <div class="relative z-10 pl-12 mb-8">
+                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D9</div>
+                    <div class="journal-card">
+                        <h3 class="text-lg font-bold mb-1">8/27 (四) 登別地獄谷 ➔ 返回札幌</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>登別 ➔ 尼克斯海洋公園</div>
+                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Noboribetsu%20Marine%20Park%20Nixe&t=&z=12&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">上午：</span>早餐後退房，驅車前往登別（車程 1 小時）。漫步地獄谷木棧道。</li>
+                            <li><span class="font-bold text-journal-accent">下午：</span><span class="font-bold">尼克斯海洋公園</span>，看企鵝遊行和海豚表演，距離近，對 6~10 歲孩子剛好，不會鐵腿。</li>
+                            <li><span class="font-bold text-journal-blue">傍晚：</span>返回札幌宜必思酒店入住。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 10 -->
+                <div class="relative z-10 pl-12 mb-4">
+                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D10</div>
+                    <div class="journal-card">
+                        <div class="tape tape-accent"></div>
+                        <h3 class="text-lg font-bold mb-1">8/28 (五) 滿載而歸</h3>
+                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-plane mr-1"></i>新千歲機場 ➔ 溫暖的家</div>
+                        <ul class="text-sm space-y-2 text-justify">
+                            <li><span class="font-bold text-journal-blue">上午：</span>前往新千歲機場。國內線有<span class="font-bold">哆啦A夢天空公園</span>讓孩子玩耍，大人把伴手禮買齊。</li>
+                            <li><span class="font-bold text-journal-accent">下午：</span>搭機返回溫暖的家。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-journal-brown text-sm mt-8 mb-4">~ End of Journey ~</div>
+        </section>
+
+        <!-- 分頁 2: 景點 (Guide) -->
+        <section id="tab-guide" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
+                <i class="fa-solid fa-map-location-dot mr-2"></i>景點指南
+            </h2>
+            
+            <div class="space-y-4">
+                <details class="journal-card !p-0 overflow-hidden group">
+                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
+                        <span><i class="fa-solid fa-tree text-journal-green mr-2"></i>瀧野鈴蘭丘陵公園</span>
+                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
+                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：09:00 - 17:00 (夏季)</p>
+                        <p>北海道唯一國營公園，超級適合 6-10 歲兒童！必玩「大地歡樂谷」的巨型彈跳床（熔岩谷）、超長溜滑梯，還有滾球區。建議帶換洗衣物與毛巾。</p>
+                    </div>
+                </details>
+
+                <details class="journal-card !p-0 overflow-hidden group">
+                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
+                        <span><i class="fa-solid fa-cookie-bite text-yellow-600 mr-2"></i>白色戀人公園</span>
+                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
+                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：10:00 - 17:00</p>
+                        <p>彷彿走進歐洲童話世界，除了參觀巧克力工廠，一定要帶小朋友去體驗畫專屬自己的巨大白色戀人餅乾。戶外的機關鐘塔整點會有可愛的表演。</p>
+                    </div>
+                </details>
+
+                <details class="journal-card !p-0 overflow-hidden group">
+                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
+                        <span><i class="fa-solid fa-seedling text-journal-green mr-2"></i>四季彩之丘 (美瑛)</span>
+                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
+                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：08:40 - 17:00 (8月)</p>
+                        <p>佔地極廣的花田。非常推薦一家人搭乘「NOROKKO號」遊園拖拉機，輕鬆繞行花海。園區內有草泥馬牧場，可以買高麗菜餵食，小朋友會非常開心。</p>
+                    </div>
+                </details>
+
+                <details class="journal-card !p-0 overflow-hidden group">
+                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
+                        <span><i class="fa-solid fa-bicycle text-journal-blue mr-2"></i>莫埃來沼公園</span>
+                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
+                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：07:00 - 22:00</p>
+                        <p>由野口勇設計的藝術公園。務必在入口處租借自行車（有兒童車款）。園內有壯觀的「玻璃金字塔」和可以爬上去的「莫埃來山」，充滿空間感與自然美。</p>
+                    </div>
+                </details>
+
+                <details class="journal-card !p-0 overflow-hidden group">
+                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
+                        <span><i class="fa-solid fa-fish-fins text-blue-500 mr-2"></i>尼克斯海洋公園</span>
+                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
+                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：09:00 - 17:00</p>
+                        <p>位於登別，充滿北歐城堡風格的海洋館。主打「企鵝大遊行」（每天有固定場次，請提前確認），能近距離看企鵝搖搖晃晃走路，還有精彩的海豚海獅秀。</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- 分頁 3: 好店 (Shops) -->
+        <section id="tab-shops" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
+                <i class="fa-solid fa-store mr-2"></i>逛街與美食
+            </h2>
+            
+            <div class="mb-4">
+                <h3 class="font-bold text-lg mb-3 flex items-center text-journal-accent">
+                    <i class="fa-solid fa-bag-shopping mr-2"></i> 必逛購物
+                </h3>
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="journal-card !mb-0 !p-3">
+                        <h4 class="font-bold">三井 Outlet Park 札幌北廣島</h4>
+                        <p class="text-xs text-journal-brown mt-1">北海道最大規模 Outlet</p>
+                        <p class="text-sm mt-2">尋找 US 10 號 Nike 球鞋、HOKA、On 等熱門跑鞋的好去處。室內有冷氣，逛起來非常舒適，也有大型美食街。</p>
+                    </div>
+                    <div class="journal-card !mb-0 !p-3">
+                        <h4 class="font-bold">森林精靈露臺 (Ningle Terrace)</h4>
+                        <p class="text-xs text-journal-brown mt-1">富良野新王子大飯店旁</p>
+                        <p class="text-sm mt-2">森林裡的木造小木屋聚落，販售各式手工藝品（木雕、紙藝、萬花筒）。傍晚點燈後氣氛絕佳，是買紀念品的好地方。</p>
+                    </div>
+                    <div class="journal-card !mb-0 !p-3">
+                        <h4 class="font-bold">大通公園 / 狸小路商圈</h4>
+                        <p class="text-xs text-journal-brown mt-1">札幌市區採買聖地</p>
+                        <p class="text-sm mt-2">藥妝、驚安殿堂唐吉訶德、伴手禮一次買齊。狸小路有遮雨棚，不受天氣影響。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 mb-4">
+                <h3 class="font-bold text-lg mb-3 flex items-center text-orange-600">
+                    <i class="fa-solid fa-utensils mr-2"></i> 推薦美食
+                </h3>
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="journal-card !mb-0 !p-3">
+                        <h4 class="font-bold">札幌 湯咖哩 (Soup Curry)</h4>
+                        <p class="text-sm mt-2">北海道靈魂美食！推薦名店：Suage+、GARAKU、Picante。大量蔬菜加上辛香料湯頭，大人小孩都可以調整辣度。</p>
+                    </div>
+                    <div class="journal-card !mb-0 !p-3">
+                        <h4 class="font-bold">小樽 LeTAO 本店</h4>
+                        <p class="text-sm mt-2">必吃「雙層起司蛋糕 (Double Fromage)」，二樓設有內用咖啡廳，可以點下午茶套餐，享受小樽的浪漫午后。</p>
+                    </div>
+                    <div class="journal-card !mb-0 !p-3">
+                        <h4 class="font-bold">洞爺乃之風 自助餐</h4>
+                        <p class="text-sm mt-2">飯店內的高級 Buffet，提供大量北海道現流海鮮、現烤牛排以及當地契作農場的蔬菜，甜點區更是小朋友的最愛。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分頁 4: 資訊 (Info) -->
+        <section id="tab-info" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
+                <i class="fa-solid fa-circle-info mr-2"></i>實用資訊
+            </h2>
+
+            <!-- 住宿資訊 -->
+            <h3 class="font-bold text-journal-blue mb-3"><i class="fa-solid fa-bed mr-1"></i> 住宿資訊</h3>
+            <div class="journal-card">
+                <div class="tape"></div>
+                <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-bold text-lg">宜必思酒店 (Ibis Hotel)</h4>
+                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">札幌市區</span>
+                </div>
+                <p class="text-sm text-journal-brown mb-2">入住日期：8/19-8/26, 8/27-8/28</p>
+                <div class="bg-journal-bg p-3 rounded text-sm mb-2 border border-dashed border-journal-line">
+                    <p><strong>訂房代號：</strong><span class="text-gray-400">請填寫</span></p>
+                    <p><strong>聯絡電話：</strong><span class="text-gray-400">請填寫</span></p>
+                </div>
+                <p class="text-xs">備註：8/26 前往洞爺湖時，需確認是否可將大件行李寄放於此。</p>
+            </div>
+
+            <div class="journal-card">
+                <div class="tape tape-accent"></div>
+                <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-bold text-lg">湖景飯店 洞爺乃之風</h4>
+                    <span class="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded">洞爺湖</span>
+                </div>
+                <p class="text-sm text-journal-brown mb-2">入住日期：8/26 (一晚)</p>
+                <div class="bg-journal-bg p-3 rounded text-sm mb-2 border border-dashed border-journal-line">
+                    <p><strong>訂房代號：</strong><span class="text-gray-400">請填寫</span></p>
+                    <p><strong>房型：</strong>全湖景客房</p>
+                </div>
+                <p class="text-xs text-orange-600 font-bold"><i class="fa-solid fa-fire mr-1"></i> 重點：晚上 20:45 洞爺湖煙火大會</p>
+            </div>
+
+            <!-- 交通資訊 -->
+            <h3 class="font-bold text-journal-green mb-3 mt-6"><i class="fa-solid fa-car mr-1"></i> 交通與租車</h3>
+            <div class="journal-card">
+                <ul class="text-sm space-y-3">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-plane-arrival mt-1 mr-2 text-journal-brown"></i>
+                        <div>
+                            <strong>航班資訊：</strong>
+                            <p class="text-gray-500">去程：8/19 抵達新千歲</p>
+                            <p class="text-gray-500">回程：8/28 新千歲起飛</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-van-shuttle mt-1 mr-2 text-journal-brown"></i>
+                        <div>
+                            <strong>租車資訊：</strong>
+                            <p class="text-gray-500">人數：4大4小 (共8人)</p>
+                            <p class="text-xs text-journal-accent mt-1">提醒：建議租用兩台一般房車/SUV，或租用具備足夠行李空間的大型 8-10 人座廂型車 (需特殊駕照確認)。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 分頁 5: 車資 (Taxi) -->
+        <section id="tab-taxi" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
+                <i class="fa-solid fa-taxi mr-2"></i>計程車資估算
+            </h2>
+
+            <div class="journal-card">
+                <div class="tape"></div>
+                <p class="text-sm mb-4 text-justify">
+                    北海道（札幌地區為主）計程車參考費率：<br>
+                    起跳價約 <strong>670 日圓</strong> (首 1.28 公里)，之後每 239 公尺增加 <strong>80 日圓</strong>。夜間 (22:00-05:00) 加成約 20%。<br>
+                    <span class="text-xs text-gray-400">* 實際費用會因塞車、停等紅綠燈等時間計費而略有不同，此為預估值。</span>
+                </p>
+
+                <div class="bg-journal-bg p-4 rounded-lg border border-journal-line">
+                    <label class="block text-sm font-bold mb-2">預估距離 (公里 km)：</label>
+                    <input type="number" id="taxi-dist" class="w-full p-2 border border-journal-line rounded mb-4 focus:outline-none focus:border-journal-accent" placeholder="例如: 5">
+
+                    <label class="flex items-center mb-4 cursor-pointer">
+                        <input type="checkbox" id="taxi-night" class="round-checkbox mr-2">
+                        <span class="text-sm font-bold">夜間加成 (22:00 - 05:00)</span>
+                    </label>
+
+                    <button onclick="calculateTaxi()" class="w-full bg-journal-accent text-white font-bold py-2 rounded shadow hover:bg-opacity-90 transition-colors">
+                        開始估算
+                    </button>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <div class="text-sm text-journal-brown mb-1">預估車資</div>
+                    <div class="text-3xl font-bold text-journal-ink" id="taxi-result">0 <span class="text-lg">JPY</span></div>
+                    <div class="text-sm text-gray-500 mt-1" id="taxi-twd-result">(約 0 TWD)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分頁 6: 清單 (Lists) -->
+        <section id="tab-lists" class="tab-content hidden">
+            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
+                <i class="fa-solid fa-list-check mr-2"></i>行前與備忘錄
+            </h2>
+
+            <!-- 行前清單 -->
+            <div class="journal-card mb-6">
+                <div class="tape tape-accent"></div>
+                <h3 class="font-bold text-lg mb-3"><i class="fa-solid fa-suitcase mr-2"></i> 行前與購買清單</h3>
+                <p class="text-xs text-gray-400 mb-3">* 打勾狀態會自動記憶在您的手機中</p>
+                <ul id="checklist-container" class="space-y-3 text-sm">
+                    <!-- Checkbox items will be generated by JS -->
+                </ul>
+            </div>
+
+            <!-- 備忘錄 -->
+            <div class="journal-card">
+                <h3 class="font-bold text-lg mb-3"><i class="fa-solid fa-pen mr-2"></i> 隨手備忘錄</h3>
+                <p class="text-xs text-gray-400 mb-2">* 輸入內容會自動儲存</p>
+                <textarea id="memo-pad" class="w-full h-40 bg-journal-bg border border-journal-line rounded-lg p-3 text-sm focus:outline-none focus:border-journal-accent resize-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjI4Ij48bGluZSB4MT0iMCIgeTE9IjI3IiB4Mj0iMTAwJSIgeTI9IjI3IiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] leading-[28px]" placeholder="寫下想買的東西、記帳或是旅行心得..."></textarea>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 底部導航列 -->
+    <nav class="fixed bottom-0 w-full bg-journal-card border-t border-journal-line shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50">
+        <div class="max-w-4xl mx-auto flex justify-between px-2 py-2">
+            <button onclick="switchTab('plan', this)" class="nav-btn active flex-1 flex flex-col items-center justify-center py-2 text-journal-accent transition-colors">
+                <i class="fa-solid fa-calendar-alt text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">行程</span>
+            </button>
+            <button onclick="switchTab('guide', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
+                <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">景點</span>
+            </button>
+            <button onclick="switchTab('shops', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
+                <i class="fa-solid fa-store text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">好店</span>
+            </button>
+            <button onclick="switchTab('info', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
+                <i class="fa-solid fa-circle-info text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">資訊</span>
+            </button>
+            <button onclick="switchTab('taxi', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
+                <i class="fa-solid fa-taxi text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">車資</span>
+            </button>
+            <button onclick="switchTab('lists', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
+                <i class="fa-solid fa-list-check text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">清單</span>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        // -----------------------
+        // 分頁切換邏輯
+        // -----------------------
+        function switchTab(tabId, btnElement) {
+            // 隱藏所有內容
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('fade-in');
+            });
+            
+            // 移除所有按鈕的 active 狀態 (顏色)
+            document.querySelectorAll('.nav-btn').forEach(el => {
+                el.classList.remove('text-journal-accent');
+                el.classList.add('text-journal-brown');
+            });
+
+            // 顯示目標內容並加上動畫
+            const targetTab = document.getElementById('tab-' + tabId);
+            targetTab.classList.remove('hidden');
+            // 觸發重繪以重啟動畫
+            void targetTab.offsetWidth;
+            targetTab.classList.add('fade-in');
+
+            // 設置按鈕顏色
+            btnElement.classList.remove('text-journal-brown');
+            btnElement.classList.add('text-journal-accent');
+
+            // 滾動回頂部
+            window.scrollTo(0, 0);
+        }
+
+        // -----------------------
+        // 計程車資估算邏輯
+        // -----------------------
+        function calculateTaxi() {
+            const distance = parseFloat(document.getElementById('taxi-dist').value);
+            const isNight = document.getElementById('taxi-night').checked;
+            
+            if (isNaN(distance) || distance <= 0) {
+                document.getElementById('taxi-result').innerText = '0 JPY';
+                document.getElementById('taxi-twd-result').innerText = '(約 0 TWD)';
+                return;
+            }
+
+            // 札幌計程車費率 (2024/2025參考)
+            // 起跳 1.28km = 670 日圓
+            // 之後每 239m = 80 日圓
+            let fare = 670;
+            if (distance > 1.28) {
+                const extraDistance = distance - 1.28;
+                // 將公里轉為公尺計算區段
+                const segments = Math.ceil((extraDistance * 1000) / 239);
+                fare += segments * 80;
+            }
+
+            // 夜間加成 (大約 20%)
+            if (isNight) {
+                fare = Math.floor(fare * 1.2);
+            }
+
+            document.getElementById('taxi-result').innerHTML = `${fare.toLocaleString()} <span class="text-lg">JPY</span>`;
+            
+            // 簡單台幣換算 (假設匯率 0.21)
+            const twd = Math.round(fare * 0.21);
+            document.getElementById('taxi-twd-result').innerText = `(約 ${twd.toLocaleString()} TWD)`;
+        }
+
+        // -----------------------
+        // 清單與備忘錄 (LocalStorage)
+        // -----------------------
+        const defaultChecklist = [
+            { id: 'item1', text: '護照 (檢查效期是否超過半年)', checked: false },
+            { id: 'item2', text: '日幣現金與信用卡 (準備高回饋卡)', checked: false },
+            { id: 'item3', text: '上網 SIM 卡或 Wi-Fi 機', checked: false },
+            { id: 'item4', text: '駕照日文譯本 (租車必備)', checked: false },
+            { id: 'item5', text: '小朋友換洗衣物 (多帶一套備用)', checked: false },
+            { id: 'item6', text: '薄外套 (北海道早晚溫差大)', checked: false },
+            { id: 'item7', text: '常備藥品 (腸胃藥、感冒藥、OK繃)', checked: false },
+            { id: 'item8', text: '折疊雨傘/輕便雨衣', checked: false }
+        ];
+
+        function initLists() {
+            // 載入備忘錄
+            const savedMemo = localStorage.getItem('hokkaido_memo_2026');
+            const memoPad = document.getElementById('memo-pad');
+            if (savedMemo !== null) {
+                memoPad.value = savedMemo;
+            }
+            // 監聽輸入自動儲存
+            memoPad.addEventListener('input', (e) => {
+                localStorage.setItem('hokkaido_memo_2026', e.target.value);
+            });
+
+            // 載入清單
+            let checklistData = JSON.parse(localStorage.getItem('hokkaido_checklist_2026'));
+            if (!checklistData || checklistData.length === 0) {
+                checklistData = defaultChecklist;
+            }
+
+            const container = document.getElementById('checklist-container');
+            container.innerHTML = '';
+
+            checklistData.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = 'flex items-center';
+                
+                const isChecked = item.checked ? 'checked' : '';
+                const textStyle = item.checked ? 'text-gray-400 line-through' : 'text-journal-ink';
+
+                li.innerHTML = `
+                    <input type="checkbox" id="${item.id}" class="round-checkbox mr-3" ${isChecked}>
+                    <label for="${item.id}" class="cursor-pointer flex-1 ${textStyle}">${item.text}</label>
+                `;
+                
+                // 綁定事件
+                const checkbox = li.querySelector('input');
+                const label = li.querySelector('label');
+                
+                checkbox.addEventListener('change', (e) => {
+                    checklistData[index].checked = e.target.checked;
+                    localStorage.setItem('hokkaido_checklist_2026', JSON.stringify(checklistData));
+                    
+                    // 更新樣式
+                    if (e.target.checked) {
+                        label.classList.add('text-gray-400', 'line-through');
+                        label.classList.remove('text-journal-ink');
+                    } else {
+                        label.classList.remove('text-gray-400', 'line-through');
+                        label.classList.add('text-journal-ink');
+                    }
+                });
+
+                container.appendChild(li);
+            });
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            initLists();
+        });
+    </script>
+</body>
+</html>
