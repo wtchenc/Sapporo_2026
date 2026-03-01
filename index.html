@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 北海道家族旅行手帳</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Zen Maru Gothic (圓體) & Noto Sans TC -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config for Journal Style -->
     <script>
         tailwind.config = {
             theme: {
@@ -23,16 +25,20 @@
                         journal: {
                             bg: '#fcf9f2',      // 米黃紙張底色
                             card: '#ffffff',    // 純白紙張
-                            ink: '#594a4e',     // 深褐墨水色
-                            brown: '#a68a80',   // 淺棕色
-                            accent: '#d48872',  // 強調色 (櫻花粉橘)
-                            blue: '#8db5be',    // 輔助色1 (海洋藍)
-                            green: '#9eb896',   // 輔助色2 (森林綠)
-                            line: '#e0d8cc'     // 線條色
+                            ink: '#594a4e',     // 深褐墨水色 (文字主色)
+                            brown: '#a68a80',   // 淺棕色 (次要文字)
+                            accent: '#d48872',  // 珊瑚粉橘 (強調色)
+                            blue: '#78a2b7',    // 北海道冰雪藍
+                            green: '#88a87b',   // 富良野森林綠
+                            line: '#e0d8cc'     // 淺灰線條
                         }
                     },
                     fontFamily: {
                         sans: ['"Zen Maru Gothic"', '"Noto Sans TC"', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+                    },
+                    backgroundImage: {
+                        'paper-pattern': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d1c7b7\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
                     }
                 }
             }
@@ -40,694 +46,1344 @@
     </script>
 
     <style>
-        /* 手帳風格自訂 CSS */
+        /* Global Reset & Utility */
         body {
             background-color: #fcf9f2;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23dcbba3' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
             color: #594a4e;
-            background-image: 
-                linear-gradient(#e0d8cc 1px, transparent 1px);
-            background-size: 100% 28px;
-            background-attachment: local;
-        }
-
-        /* 隱藏滾動條但保持可滾動 */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: #a68a80;
-            border-radius: 10px;
-        }
-
-        /* 淡入動畫 */
-        .fade-in {
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 紙膠帶裝飾 */
-        .tape {
-            position: absolute;
-            width: 80px;
-            height: 25px;
-            background-color: rgba(141, 181, 190, 0.4); /* journal-blue 帶透明 */
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%) rotate(-3deg);
-            z-index: 10;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .tape-accent {
-            background-color: rgba(212, 136, 114, 0.4); /* journal-accent */
-            transform: translateX(-50%) rotate(2deg);
-        }
-
-        /* 手帳卡片 */
-        .journal-card {
-            background: #ffffff;
-            border: 1px dashed #a68a80;
-            border-radius: 12px;
-            padding: 1rem;
-            position: relative;
-            box-shadow: 2px 4px 10px rgba(0,0,0,0.03);
-            margin-bottom: 1.5rem;
-        }
-
-        /* 時間軸線條 */
-        .timeline-line {
-            position: absolute;
-            left: 20px;
-            top: 40px;
-            bottom: 0;
-            width: 2px;
-            background: #e0d8cc;
-            z-index: 0;
-        }
-
-        /* Accordion 重置與樣式 */
-        details > summary {
-            list-style: none;
-            cursor: pointer;
-        }
-        details > summary::-webkit-details-marker {
-            display: none;
-        }
-        details[open] summary ~ * {
-            animation: fadeIn 0.3s ease-out;
+            -webkit-tap-highlight-color: transparent;
         }
         
-        /* Checkbox 樣式 */
-        .round-checkbox {
-            appearance: none;
-            width: 1.5rem;
-            height: 1.5rem;
-            border: 2px solid #a68a80;
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Journal Card Effect */
+        .journal-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 2px 3px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
+        }
+
+        /* Washi Tape Effect */
+        .washi-tape-top {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            width: 100px;
+            height: 24px;
+            background-color: rgba(212, 136, 114, 0.3);
+            border-left: 2px dashed rgba(255,255,255,0.6);
+            border-right: 2px dashed rgba(255,255,255,0.6);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        .washi-tape-blue { background-color: rgba(120, 162, 183, 0.4); }
+        .washi-tape-green { background-color: rgba(136, 168, 123, 0.4); }
+
+        /* Ticket Notches */
+        .ticket-notch {
+            position: absolute;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            background-color: #fcf9f2; /* Match body bg */
             border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            transform: translateY(-50%);
+            border: 1px solid #e0d8cc;
+            z-index: 10;
+        }
+        .ticket-notch-left {
+            left: -9px;
+            border-left-color: transparent;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+        }
+        .ticket-notch-right {
+            right: -9px;
+            border-right-color: transparent;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+        /* Dashed Timeline */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            bottom: -1rem;
+            left: 1rem;
+            width: 0px;
+            border-left: 2px dashed #d1c7b7;
+            z-index: 0;
+        }
+        .last-item .timeline-line::before { display: none; }
+
+        /* Hand-drawn Button */
+        .btn-hand {
             transition: all 0.2s;
+            border-bottom: 3px solid transparent;
         }
-        .round-checkbox:checked {
-            background-color: #d48872;
-            border-color: #d48872;
+        .btn-hand:active {
+            transform: translateY(2px);
+            border-bottom: 0px solid transparent;
         }
-        .round-checkbox:checked::after {
-            content: '\f00c';
-            font-family: 'FontAwesome';
-            color: white;
-            font-size: 0.8rem;
+
+        /* Toggle Switch Animation */
+        #night-toggle:checked + .toggle-bg {
+            background-color: #312e81; 
+            border-color: #312e81;
         }
+        #night-toggle:checked + .toggle-bg .toggle-dot {
+            transform: translateX(100%);
+            border-color: white;
+            background-color: white;
+        }
+        #night-toggle:checked + .toggle-bg .toggle-icon {
+            opacity: 1;
+            color: #312e81;
+        }
+        
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="antialiased selection:bg-journal-accent selection:text-white pb-24">
+<body class="flex flex-col h-screen overflow-hidden text-journal-ink md:max-w-4xl md:mx-auto md:border-x md:border-journal-line">
 
-    <!-- 頂部標題列 -->
-    <header class="sticky top-0 z-40 bg-journal-bg/95 backdrop-blur shadow-sm border-b border-journal-line py-3 px-4 flex justify-between items-center max-w-4xl mx-auto">
-        <div class="flex flex-col">
-            <h1 class="text-lg font-bold text-journal-ink tracking-widest"><i class="fa-solid fa-plane-departure mr-2 text-journal-accent"></i>北海道家族旅行</h1>
-            <span class="text-xs text-journal-brown font-medium">2026.08.19 ~ 08.28 ✈️ 4大4小</span>
+    <!-- Top Header -->
+    <header id="main-header" class="flex-none bg-journal-bg/95 backdrop-blur-sm border-b border-journal-line px-6 py-4 flex justify-between items-center z-20 transition-transform duration-300">
+        <div>
+            <h1 class="text-2xl font-bold tracking-widest text-journal-ink flex items-center">
+                <i class="fa-solid fa-plane-departure mr-2 text-journal-accent text-sm"></i>
+                TRIP 2026
+            </h1>
+            <div class="mt-1">
+                <p class="text-sm font-bold text-journal-ink tracking-widest">
+                    <span class="text-journal-blue">北海道</span>家族旅行
+                </p>
+                <p class="text-[10px] text-journal-brown tracking-wide font-mono mt-0.5">
+                    2026.08.19 - 08.28 (10天9夜) ✈️ 4大4小
+                </p>
+            </div>
         </div>
-        <div class="w-8 h-8 bg-journal-blue/20 rounded-full flex items-center justify-center text-journal-blue">
-            <i class="fa-solid fa-cloud-sun"></i>
+        <div class="flex flex-col items-end">
+            <div class="text-xs text-journal-brown mb-1">Day</div>
+            <div id="current-day-display" class="text-xl font-bold text-journal-accent font-mono bg-white px-3 py-1 rounded-lg border-2 border-dashed border-journal-line shadow-sm">
+                -
+            </div>
         </div>
     </header>
 
-    <!-- 主內容區 (限制最大寬度以符合手機/手帳比例) -->
-    <main class="max-w-4xl mx-auto p-4 md:p-6 relative" id="main-content">
-        
-        <!-- 分頁 1: 行程 (Plan) -->
-        <section id="tab-plan" class="tab-content fade-in">
-            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
-                <i class="fa-solid fa-route mr-2"></i>10天探索日誌
-            </h2>
-            
-            <div class="relative">
-                <div class="timeline-line"></div>
-                
-                <!-- Day 1 -->
-                <div class="relative z-10 pl-12 mb-8">
-                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D1</div>
-                    <div class="journal-card">
-                        <div class="tape"></div>
-                        <h3 class="text-lg font-bold mb-1">8/19 (三) 抵達札幌，輕鬆安頓</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>新千歲機場 ➔ 札幌市區</div>
-                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Ibis%20Styles%20Sapporo&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">行程：</span>抵達新千歲機場 ➔ 領車/搭車前往札幌 ➔ 入住 宜必思酒店。</li>
-                            <li><span class="font-bold text-journal-accent">活動：</span>第一天不排太緊，晚上全家散步去吃碗熱騰騰的拉麵或湯咖哩，感受北海道涼爽的晚風。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Day 2 -->
-                <div class="relative z-10 pl-12 mb-8">
-                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D2</div>
-                    <div class="journal-card">
-                        <h3 class="text-lg font-bold mb-1">8/20 (四) 親子大放電 ＆ 專心購物</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>瀧野鈴蘭丘陵公園 ➔ 北廣島</div>
-                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=瀧野鈴蘭丘陵公園&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">上午：</span>前往<span class="font-bold">瀧野鈴蘭丘陵公園</span>。非常厲害的國營公園，10歲哥哥和8歲妹妹剛好是可以盡情挑戰巨型彈跳床、超長溜滑梯與森林迷宮的年紀！</li>
-                            <li><span class="font-bold text-journal-accent">下午：</span>前往<span class="font-bold">北廣島三井 Outlet Park</span>。運動品牌齊全，尋找 US 10 號 Nike 球鞋，或是 HOKA、On 等熱門跑鞋。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Day 3 -->
-                <div class="relative z-10 pl-12 mb-8">
-                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D3</div>
-                    <div class="journal-card">
-                        <div class="tape tape-accent"></div>
-                        <h3 class="text-lg font-bold mb-1">8/21 (五) 札幌市區童話體驗</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>白色戀人公園 ➔ 北海道神宮</div>
-                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Shiroi%20Koibito%20Park&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">上午：</span><span class="font-bold">白色戀人公園</span>。室內外充滿歐風童話感，讓孩子們體驗動手畫餅乾，全家拍可愛合照。</li>
-                            <li><span class="font-bold text-journal-accent">下午：</span><span class="font-bold">北海道神宮</span>散步，接著到大通公園或狸小路商圈做最後的市區採買。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Day 4 -->
-                <div class="relative z-10 pl-12 mb-8">
-                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D4</div>
-                    <div class="journal-card">
-                        <h3 class="text-lg font-bold mb-1">8/22 (六) 浪漫小樽</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>小樽運河 ➔ 堺町通</div>
-                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Otaru%20Canal&t=&z=14&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">下午：</span>驅車前往小樽（車程約 45 分鐘，很適合作為大團體的第一個暖身景點）。</li>
-                            <li><span class="font-bold text-journal-accent">活動：</span>漫步小樽運河，逛堺町通的音樂盒堂、北一硝子館。孩子對玻璃藝品會覺得新奇，大人一起品嚐 LeTAO 雙層起司蛋糕。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Day 5 -->
-                <div class="relative z-10 pl-12 mb-8">
-                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D5</div>
-                    <div class="journal-card">
-                        <div class="tape tape-accent"></div>
-                        <h3 class="text-lg font-bold mb-1">8/23 (日) 長途遠征！富良野與美瑛</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>四季彩之丘 ➔ 青池 ➔ 精靈露臺</div>
-                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Shikisaisai%20no%20Oka&t=&z=10&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">全天：</span>車程較長（單趟約 2.5 小時），吃飽早餐提早出發。</li>
-                            <li><span class="font-bold text-journal-blue">上午：</span><span class="font-bold">四季彩之丘</span>搭乘遊園拖拉機看花海，草泥馬牧場餵食。</li>
-                            <li><span class="font-bold text-journal-accent">下午：</span>探訪<span class="font-bold">白金青池</span>，接著前往<span class="font-bold">森林精靈露臺</span>。傍晚點燈後的小木屋非常夢幻，結束後開車回札幌。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Day 6 -->
-                <div class="relative z-10 pl-12 mb-8">
-                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D6</div>
-                    <div class="journal-card">
-                        <h3 class="text-lg font-bold mb-1">8/24 (一) 自然生態與自行車微風</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>莫埃來沼公園 ➔ F-Village</div>
-                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Moerenuma%20Park&t=&z=12&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">上午：</span><span class="font-bold">莫埃來沼公園</span>。超大型藝術公園，兩家人租腳踏車環園，爬玻璃金字塔和人造山，腹地極大。</li>
-                            <li><span class="font-bold text-journal-accent">下午：</span><span class="font-bold">F-Village</span> (日本火腿鬥士隊新主場)。戶外兒童遊樂設施、草皮，大人也能在商場休息吃美食。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Day 7 -->
-                <div class="relative z-10 pl-12 mb-8">
-                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D7</div>
-                    <div class="journal-card">
-                        <div class="tape"></div>
-                        <h3 class="text-lg font-bold mb-1">8/25 (二) 札幌市內彈性行程</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>電視塔 / 動物園 / 自由採買</div>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">全天：</span>前幾天緊湊行程的緩衝日。可以安排札幌電視塔看風景、圓山動物園，或各自在市區彈性行動、採買未齊物品。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Day 8 -->
-                <div class="relative z-10 pl-12 mb-8">
-                    <div class="absolute left-1 top-1 w-8 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md py-1 px-2 w-auto whitespace-nowrap z-20" style="left: -1rem;">🎇 D8</div>
-                    <div class="journal-card mt-4 border-gray-400">
-                        <h3 class="text-lg font-bold mb-1 text-gray-800">8/26 (三) 洞爺湖頂級溫泉與煙火</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>洞爺湖 ➔ 乃之風</div>
-                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=The%20Lake%20View%20Toya%20Nonokaze%20Resort&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">上午：</span>寄放行李，帶輕便衣物驅車前往洞爺湖（車程約 2 小時）。</li>
-                            <li><span class="font-bold text-journal-accent">下午：</span>搭乘洞爺湖遊覽船或有珠山纜車。</li>
-                            <li><span class="font-bold text-journal-blue">傍晚：</span>入住<span class="font-bold">洞爺乃之風</span>。享受高水準自助餐。</li>
-                            <li><span class="font-bold text-orange-600">晚上 (20:45)：</span>重頭戲！換上浴衣，在全湖景房間或頂樓露天溫泉欣賞洞爺湖水上煙火大會。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Day 9 -->
-                <div class="relative z-10 pl-12 mb-8">
-                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D9</div>
-                    <div class="journal-card">
-                        <h3 class="text-lg font-bold mb-1">8/27 (四) 登別地獄谷 ➔ 返回札幌</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-location-dot mr-1"></i>登別 ➔ 尼克斯海洋公園</div>
-                        <iframe class="w-full h-32 rounded-lg mb-3 border border-journal-line" src="https://maps.google.com/maps?q=Noboribetsu%20Marine%20Park%20Nixe&t=&z=12&ie=UTF8&iwloc=&output=embed" frameborder="0" loading="lazy"></iframe>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">上午：</span>早餐後退房，驅車前往登別（車程 1 小時）。漫步地獄谷木棧道。</li>
-                            <li><span class="font-bold text-journal-accent">下午：</span><span class="font-bold">尼克斯海洋公園</span>，看企鵝遊行和海豚表演，距離近，對 6~10 歲孩子剛好，不會鐵腿。</li>
-                            <li><span class="font-bold text-journal-blue">傍晚：</span>返回札幌宜必思酒店入住。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Day 10 -->
-                <div class="relative z-10 pl-12 mb-4">
-                    <div class="absolute left-1 top-1 w-8 h-8 bg-journal-accent text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md">D10</div>
-                    <div class="journal-card">
-                        <div class="tape tape-accent"></div>
-                        <h3 class="text-lg font-bold mb-1">8/28 (五) 滿載而歸</h3>
-                        <div class="text-xs text-journal-brown mb-3"><i class="fa-solid fa-plane mr-1"></i>新千歲機場 ➔ 溫暖的家</div>
-                        <ul class="text-sm space-y-2 text-justify">
-                            <li><span class="font-bold text-journal-blue">上午：</span>前往新千歲機場。國內線有<span class="font-bold">哆啦A夢天空公園</span>讓孩子玩耍，大人把伴手禮買齊。</li>
-                            <li><span class="font-bold text-journal-accent">下午：</span>搭機返回溫暖的家。</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center text-journal-brown text-sm mt-8 mb-4">~ End of Journey ~</div>
-        </section>
-
-        <!-- 分頁 2: 景點 (Guide) -->
-        <section id="tab-guide" class="tab-content hidden">
-            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
-                <i class="fa-solid fa-map-location-dot mr-2"></i>景點指南
-            </h2>
-            
-            <div class="space-y-4">
-                <details class="journal-card !p-0 overflow-hidden group">
-                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
-                        <span><i class="fa-solid fa-tree text-journal-green mr-2"></i>瀧野鈴蘭丘陵公園</span>
-                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
-                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：09:00 - 17:00 (夏季)</p>
-                        <p>北海道唯一國營公園，超級適合 6-10 歲兒童！必玩「大地歡樂谷」的巨型彈跳床（熔岩谷）、超長溜滑梯，還有滾球區。建議帶換洗衣物與毛巾。</p>
-                    </div>
-                </details>
-
-                <details class="journal-card !p-0 overflow-hidden group">
-                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
-                        <span><i class="fa-solid fa-cookie-bite text-yellow-600 mr-2"></i>白色戀人公園</span>
-                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
-                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：10:00 - 17:00</p>
-                        <p>彷彿走進歐洲童話世界，除了參觀巧克力工廠，一定要帶小朋友去體驗畫專屬自己的巨大白色戀人餅乾。戶外的機關鐘塔整點會有可愛的表演。</p>
-                    </div>
-                </details>
-
-                <details class="journal-card !p-0 overflow-hidden group">
-                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
-                        <span><i class="fa-solid fa-seedling text-journal-green mr-2"></i>四季彩之丘 (美瑛)</span>
-                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
-                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：08:40 - 17:00 (8月)</p>
-                        <p>佔地極廣的花田。非常推薦一家人搭乘「NOROKKO號」遊園拖拉機，輕鬆繞行花海。園區內有草泥馬牧場，可以買高麗菜餵食，小朋友會非常開心。</p>
-                    </div>
-                </details>
-
-                <details class="journal-card !p-0 overflow-hidden group">
-                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
-                        <span><i class="fa-solid fa-bicycle text-journal-blue mr-2"></i>莫埃來沼公園</span>
-                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
-                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：07:00 - 22:00</p>
-                        <p>由野口勇設計的藝術公園。務必在入口處租借自行車（有兒童車款）。園內有壯觀的「玻璃金字塔」和可以爬上去的「莫埃來山」，充滿空間感與自然美。</p>
-                    </div>
-                </details>
-
-                <details class="journal-card !p-0 overflow-hidden group">
-                    <summary class="p-4 font-bold flex justify-between items-center bg-white hover:bg-journal-bg transition-colors">
-                        <span><i class="fa-solid fa-fish-fins text-blue-500 mr-2"></i>尼克斯海洋公園</span>
-                        <i class="fa-solid fa-chevron-down text-journal-brown transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <div class="p-4 pt-0 text-sm border-t border-dashed border-journal-line text-journal-ink">
-                        <p class="mb-2"><i class="fa-regular fa-clock mr-1 text-journal-brown"></i> 營業時間：09:00 - 17:00</p>
-                        <p>位於登別，充滿北歐城堡風格的海洋館。主打「企鵝大遊行」（每天有固定場次，請提前確認），能近距離看企鵝搖搖晃晃走路，還有精彩的海豚海獅秀。</p>
-                    </div>
-                </details>
-            </div>
-        </section>
-
-        <!-- 分頁 3: 好店 (Shops) -->
-        <section id="tab-shops" class="tab-content hidden">
-            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
-                <i class="fa-solid fa-store mr-2"></i>逛街與美食
-            </h2>
-            
-            <div class="mb-4">
-                <h3 class="font-bold text-lg mb-3 flex items-center text-journal-accent">
-                    <i class="fa-solid fa-bag-shopping mr-2"></i> 必逛購物
-                </h3>
-                <div class="grid grid-cols-1 gap-3">
-                    <div class="journal-card !mb-0 !p-3">
-                        <h4 class="font-bold">三井 Outlet Park 札幌北廣島</h4>
-                        <p class="text-xs text-journal-brown mt-1">北海道最大規模 Outlet</p>
-                        <p class="text-sm mt-2">尋找 US 10 號 Nike 球鞋、HOKA、On 等熱門跑鞋的好去處。室內有冷氣，逛起來非常舒適，也有大型美食街。</p>
-                    </div>
-                    <div class="journal-card !mb-0 !p-3">
-                        <h4 class="font-bold">森林精靈露臺 (Ningle Terrace)</h4>
-                        <p class="text-xs text-journal-brown mt-1">富良野新王子大飯店旁</p>
-                        <p class="text-sm mt-2">森林裡的木造小木屋聚落，販售各式手工藝品（木雕、紙藝、萬花筒）。傍晚點燈後氣氛絕佳，是買紀念品的好地方。</p>
-                    </div>
-                    <div class="journal-card !mb-0 !p-3">
-                        <h4 class="font-bold">大通公園 / 狸小路商圈</h4>
-                        <p class="text-xs text-journal-brown mt-1">札幌市區採買聖地</p>
-                        <p class="text-sm mt-2">藥妝、驚安殿堂唐吉訶德、伴手禮一次買齊。狸小路有遮雨棚，不受天氣影響。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-8 mb-4">
-                <h3 class="font-bold text-lg mb-3 flex items-center text-orange-600">
-                    <i class="fa-solid fa-utensils mr-2"></i> 推薦美食
-                </h3>
-                <div class="grid grid-cols-1 gap-3">
-                    <div class="journal-card !mb-0 !p-3">
-                        <h4 class="font-bold">札幌 湯咖哩 (Soup Curry)</h4>
-                        <p class="text-sm mt-2">北海道靈魂美食！推薦名店：Suage+、GARAKU、Picante。大量蔬菜加上辛香料湯頭，大人小孩都可以調整辣度。</p>
-                    </div>
-                    <div class="journal-card !mb-0 !p-3">
-                        <h4 class="font-bold">小樽 LeTAO 本店</h4>
-                        <p class="text-sm mt-2">必吃「雙層起司蛋糕 (Double Fromage)」，二樓設有內用咖啡廳，可以點下午茶套餐，享受小樽的浪漫午后。</p>
-                    </div>
-                    <div class="journal-card !mb-0 !p-3">
-                        <h4 class="font-bold">洞爺乃之風 自助餐</h4>
-                        <p class="text-sm mt-2">飯店內的高級 Buffet，提供大量北海道現流海鮮、現烤牛排以及當地契作農場的蔬菜，甜點區更是小朋友的最愛。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 分頁 4: 資訊 (Info) -->
-        <section id="tab-info" class="tab-content hidden">
-            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
-                <i class="fa-solid fa-circle-info mr-2"></i>實用資訊
-            </h2>
-
-            <!-- 住宿資訊 -->
-            <h3 class="font-bold text-journal-blue mb-3"><i class="fa-solid fa-bed mr-1"></i> 住宿資訊</h3>
-            <div class="journal-card">
-                <div class="tape"></div>
-                <div class="flex justify-between items-start mb-2">
-                    <h4 class="font-bold text-lg">宜必思酒店 (Ibis Hotel)</h4>
-                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">札幌市區</span>
-                </div>
-                <p class="text-sm text-journal-brown mb-2">入住日期：8/19-8/26, 8/27-8/28</p>
-                <div class="bg-journal-bg p-3 rounded text-sm mb-2 border border-dashed border-journal-line">
-                    <p><strong>訂房代號：</strong><span class="text-gray-400">請填寫</span></p>
-                    <p><strong>聯絡電話：</strong><span class="text-gray-400">請填寫</span></p>
-                </div>
-                <p class="text-xs">備註：8/26 前往洞爺湖時，需確認是否可將大件行李寄放於此。</p>
-            </div>
-
-            <div class="journal-card">
-                <div class="tape tape-accent"></div>
-                <div class="flex justify-between items-start mb-2">
-                    <h4 class="font-bold text-lg">湖景飯店 洞爺乃之風</h4>
-                    <span class="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded">洞爺湖</span>
-                </div>
-                <p class="text-sm text-journal-brown mb-2">入住日期：8/26 (一晚)</p>
-                <div class="bg-journal-bg p-3 rounded text-sm mb-2 border border-dashed border-journal-line">
-                    <p><strong>訂房代號：</strong><span class="text-gray-400">請填寫</span></p>
-                    <p><strong>房型：</strong>全湖景客房</p>
-                </div>
-                <p class="text-xs text-orange-600 font-bold"><i class="fa-solid fa-fire mr-1"></i> 重點：晚上 20:45 洞爺湖煙火大會</p>
-            </div>
-
-            <!-- 交通資訊 -->
-            <h3 class="font-bold text-journal-green mb-3 mt-6"><i class="fa-solid fa-car mr-1"></i> 交通與租車</h3>
-            <div class="journal-card">
-                <ul class="text-sm space-y-3">
-                    <li class="flex items-start">
-                        <i class="fa-solid fa-plane-arrival mt-1 mr-2 text-journal-brown"></i>
-                        <div>
-                            <strong>航班資訊：</strong>
-                            <p class="text-gray-500">去程：8/19 抵達新千歲</p>
-                            <p class="text-gray-500">回程：8/28 新千歲起飛</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fa-solid fa-van-shuttle mt-1 mr-2 text-journal-brown"></i>
-                        <div>
-                            <strong>租車資訊：</strong>
-                            <p class="text-gray-500">人數：4大4小 (共8人)</p>
-                            <p class="text-xs text-journal-accent mt-1">提醒：建議租用兩台一般房車/SUV，或租用具備足夠行李空間的大型 8-10 人座廂型車 (需特殊駕照確認)。</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- 分頁 5: 車資 (Taxi) -->
-        <section id="tab-taxi" class="tab-content hidden">
-            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
-                <i class="fa-solid fa-taxi mr-2"></i>計程車資估算
-            </h2>
-
-            <div class="journal-card">
-                <div class="tape"></div>
-                <p class="text-sm mb-4 text-justify">
-                    北海道（札幌地區為主）計程車參考費率：<br>
-                    起跳價約 <strong>670 日圓</strong> (首 1.28 公里)，之後每 239 公尺增加 <strong>80 日圓</strong>。夜間 (22:00-05:00) 加成約 20%。<br>
-                    <span class="text-xs text-gray-400">* 實際費用會因塞車、停等紅綠燈等時間計費而略有不同，此為預估值。</span>
-                </p>
-
-                <div class="bg-journal-bg p-4 rounded-lg border border-journal-line">
-                    <label class="block text-sm font-bold mb-2">預估距離 (公里 km)：</label>
-                    <input type="number" id="taxi-dist" class="w-full p-2 border border-journal-line rounded mb-4 focus:outline-none focus:border-journal-accent" placeholder="例如: 5">
-
-                    <label class="flex items-center mb-4 cursor-pointer">
-                        <input type="checkbox" id="taxi-night" class="round-checkbox mr-2">
-                        <span class="text-sm font-bold">夜間加成 (22:00 - 05:00)</span>
-                    </label>
-
-                    <button onclick="calculateTaxi()" class="w-full bg-journal-accent text-white font-bold py-2 rounded shadow hover:bg-opacity-90 transition-colors">
-                        開始估算
-                    </button>
-                </div>
-
-                <div class="mt-6 text-center">
-                    <div class="text-sm text-journal-brown mb-1">預估車資</div>
-                    <div class="text-3xl font-bold text-journal-ink" id="taxi-result">0 <span class="text-lg">JPY</span></div>
-                    <div class="text-sm text-gray-500 mt-1" id="taxi-twd-result">(約 0 TWD)</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 分頁 6: 清單 (Lists) -->
-        <section id="tab-lists" class="tab-content hidden">
-            <h2 class="text-xl font-bold mb-6 text-center text-journal-ink border-b-2 border-dashed border-journal-accent pb-2 inline-block relative left-1/2 -translate-x-1/2">
-                <i class="fa-solid fa-list-check mr-2"></i>行前與備忘錄
-            </h2>
-
-            <!-- 行前清單 -->
-            <div class="journal-card mb-6">
-                <div class="tape tape-accent"></div>
-                <h3 class="font-bold text-lg mb-3"><i class="fa-solid fa-suitcase mr-2"></i> 行前與購買清單</h3>
-                <p class="text-xs text-gray-400 mb-3">* 打勾狀態會自動記憶在您的手機中</p>
-                <ul id="checklist-container" class="space-y-3 text-sm">
-                    <!-- Checkbox items will be generated by JS -->
-                </ul>
-            </div>
-
-            <!-- 備忘錄 -->
-            <div class="journal-card">
-                <h3 class="font-bold text-lg mb-3"><i class="fa-solid fa-pen mr-2"></i> 隨手備忘錄</h3>
-                <p class="text-xs text-gray-400 mb-2">* 輸入內容會自動儲存</p>
-                <textarea id="memo-pad" class="w-full h-40 bg-journal-bg border border-journal-line rounded-lg p-3 text-sm focus:outline-none focus:border-journal-accent resize-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjI4Ij48bGluZSB4MT0iMCIgeTE9IjI3IiB4Mj0iMTAwJSIgeTI9IjI3IiBzdHJva2U9IiNlMGQ4Y2MiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] leading-[28px]" placeholder="寫下想買的東西、記帳或是旅行心得..."></textarea>
-            </div>
-        </section>
-
+    <!-- Main Content Area -->
+    <main id="app-container" class="flex-1 overflow-y-auto hide-scrollbar p-4 pb-28 md:p-8 md:pb-28 relative">
+        <!-- Content injected by JS -->
     </main>
 
-    <!-- 底部導航列 -->
-    <nav class="fixed bottom-0 w-full bg-journal-card border-t border-journal-line shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50">
-        <div class="max-w-4xl mx-auto flex justify-between px-2 py-2">
-            <button onclick="switchTab('plan', this)" class="nav-btn active flex-1 flex flex-col items-center justify-center py-2 text-journal-accent transition-colors">
-                <i class="fa-solid fa-calendar-alt text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">行程</span>
+    <!-- Bottom Navigation (Floating) -->
+    <div class="fixed bottom-6 left-2 right-2 z-30 md:max-w-4xl md:mx-auto md:left-auto md:right-auto md:w-full md:px-8">
+        <nav class="bg-white rounded-2xl shadow-[0_5px_20px_rgba(0,0,0,0.08)] border border-journal-line p-1.5 flex justify-around items-center">
+            <button onclick="switchTab('plan')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="plan">
+                <i class="fa-regular fa-calendar-check text-base"></i>
+                <span class="text-[9px] font-medium">行程</span>
             </button>
-            <button onclick="switchTab('guide', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
-                <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">景點</span>
+            <button onclick="switchTab('guide')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="guide">
+                <i class="fa-solid fa-book-open text-base"></i>
+                <span class="text-[9px] font-medium">景點</span>
             </button>
-            <button onclick="switchTab('shops', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
-                <i class="fa-solid fa-store text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">好店</span>
+            <button onclick="switchTab('shops')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="shops">
+                <i class="fa-solid fa-shop text-base"></i>
+                <span class="text-[9px] font-medium">好店</span>
             </button>
-            <button onclick="switchTab('info', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
-                <i class="fa-solid fa-circle-info text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">資訊</span>
+            <button onclick="switchTab('info')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="info">
+                <i class="fa-solid fa-file-invoice text-base"></i>
+                <span class="text-[9px] font-medium">憑證</span>
             </button>
-            <button onclick="switchTab('taxi', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
-                <i class="fa-solid fa-taxi text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">車資</span>
+            <button onclick="switchTab('taxi')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="taxi">
+                <i class="fa-solid fa-taxi text-base"></i>
+                <span class="text-[9px] font-medium">車資</span>
             </button>
-            <button onclick="switchTab('lists', this)" class="nav-btn flex-1 flex flex-col items-center justify-center py-2 text-journal-brown hover:text-journal-accent transition-colors">
-                <i class="fa-solid fa-list-check text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">清單</span>
+            <button onclick="switchTab('lists')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="lists">
+                <i class="fa-solid fa-list-check text-base"></i>
+                <span class="text-[9px] font-medium">清單</span>
             </button>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <script>
-        // -----------------------
-        // 分頁切換邏輯
-        // -----------------------
-        function switchTab(tabId, btnElement) {
-            // 隱藏所有內容
-            document.querySelectorAll('.tab-content').forEach(el => {
-                el.classList.add('hidden');
-                el.classList.remove('fade-in');
-            });
-            
-            // 移除所有按鈕的 active 狀態 (顏色)
-            document.querySelectorAll('.nav-btn').forEach(el => {
-                el.classList.remove('text-journal-accent');
-                el.classList.add('text-journal-brown');
-            });
+        // --- Data: Trip Itinerary ---
+        const tripData = [
+            {
+                date: "08/19 (三)",
+                title: "Day 1: 抵達札幌，輕鬆安頓",
+                area: "札幌市區",
+                route: "https://www.google.com/maps/dir/New+Chitose+Airport/Ibis+Styles+Sapporo",
+                mapFocus: "Ibis Styles Sapporo",
+                events: [
+                    { time: "08:35", title: "桃園起飛 CI130", desc: "TPE (T2) -> CTS (TI)，預計 13:35 抵達", icon: "fa-plane-departure", highlight: true },
+                    { time: "14:30", title: "領車/搭車前往札幌", desc: "抵達新千歲機場後，前往札幌市區", icon: "fa-van-shuttle" },
+                    { time: "16:00", title: "入住宜必思酒店", desc: "Ibis Styles Sapporo 辦理 Check-in", icon: "fa-hotel", link: "Ibis Styles Sapporo" },
+                    { time: "晚上", title: "札幌市區散步", desc: "第一天不排太緊，晚上全家散步去吃碗熱騰騰的拉麵或湯咖哩", icon: "fa-bowl-rice" }
+                ]
+            },
+            {
+                date: "08/20 (四)",
+                title: "Day 2: 親子大放電 & 專心購物",
+                area: "札幌郊區",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Takino+Suzuran+Hillside+Park/Mitsui+Outlet+Park+Sapporo+Kitahiroshima/Ibis+Styles+Sapporo",
+                mapFocus: "Takino Suzuran Hillside Park",
+                events: [
+                    { time: "09:30", title: "瀧野鈴蘭丘陵公園", desc: "國營公園，讓孩子盡情挑戰巨型彈跳床、超長溜滑梯與森林迷宮！", icon: "fa-tree", link: "Takino Suzuran Hillside Park", highlight: true },
+                    { time: "14:00", title: "三井 Outlet Park 北廣島", desc: "運動品牌齊全，尋找 US10 號 Nike 球鞋，或是 HOKA、On 等熱門跑鞋", icon: "fa-bag-shopping", link: "Mitsui Outlet Park Sapporo Kitahiroshima" },
+                    { time: "晚上", title: "返回飯店 / 晚餐", desc: "回札幌市區享用晚餐", icon: "fa-utensils" }
+                ]
+            },
+            {
+                date: "08/21 (五)",
+                title: "Day 3: 札幌市區童話體驗",
+                area: "札幌市區",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Shiroi+Koibito+Park/Hokkaido+Shrine/Odori+Park",
+                mapFocus: "Shiroi Koibito Park",
+                events: [
+                    { time: "10:00", title: "白色戀人公園", desc: "室內外充滿歐風童話感，體驗動手畫專屬餅乾，拍可愛合照", icon: "fa-cookie-bite", link: "Shiroi Koibito Park", highlight: true },
+                    { time: "14:00", title: "北海道神宮", desc: "市區綠意散步，參拜祈福", icon: "fa-torii-gate", link: "Hokkaido Shrine" },
+                    { time: "16:00", title: "大通公園 / 狸小路", desc: "做最後的市區採買，藥妝、伴手禮一次買齊", icon: "fa-store", link: "Tanukikoji Shopping Street" }
+                ]
+            },
+            {
+                date: "08/22 (六)",
+                title: "Day 4: 浪漫小樽",
+                area: "小樽",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Otaru+Canal/Otaru+Music+Box+Museum",
+                mapFocus: "Otaru Canal",
+                events: [
+                    { time: "13:00", title: "驅車前往小樽", desc: "車程約 45 分鐘，很適合作為大團體的第一個暖身景點", icon: "fa-car" },
+                    { time: "14:00", title: "小樽運河漫步", desc: "欣賞運河與紅磚倉庫的復古風情", icon: "fa-water", link: "Otaru Canal" },
+                    { time: "15:00", title: "堺町通 (音樂盒堂/北一硝子)", desc: "孩子對玻璃藝品和音樂盒會覺得很新奇", icon: "fa-music", link: "Otaru Music Box Museum", highlight: true },
+                    { time: "下午茶", title: "LeTAO 本店", desc: "大人小孩一起品嚐經典雙層起司蛋糕", icon: "fa-cake-candles", link: "LeTAO Main Store" }
+                ]
+            },
+            {
+                date: "08/23 (日)",
+                title: "Day 5: 長途遠征！富良野與美瑛絕景",
+                area: "富良野/美瑛",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Shikisaisai+no+Oka/Shirogane+Blue+Pond/Ningle+Terrace/Ibis+Styles+Sapporo",
+                mapFocus: "Shikisaisai no Oka",
+                events: [
+                    { time: "08:00", title: "提早出發！", desc: "單趟車程約 2.5 小時，建議吃飽早餐後出發", icon: "fa-road", alert: "important" },
+                    { time: "10:30", title: "四季彩之丘 (美瑛)", desc: "搭乘遊園拖拉機看廣大花海，草泥馬牧場餵食體驗", icon: "fa-seedling", link: "Shikisaisai no Oka", highlight: true },
+                    { time: "13:30", title: "白金青池", desc: "欣賞夢幻的神秘藍色池水", icon: "fa-droplet", link: "Shirogane Blue Pond" },
+                    { time: "16:00", title: "森林精靈露臺", desc: "富良野的木屋聚落。傍晚點燈後非常夢幻！結束後開車返回札幌", icon: "fa-house-tree", link: "Ningle Terrace" }
+                ]
+            },
+            {
+                date: "08/24 (一)",
+                title: "Day 6: 自然生態與自行車微風",
+                area: "札幌近郊",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Moerenuma+Park/ES+CON+FIELD+HOKKAIDO",
+                mapFocus: "Moerenuma Park",
+                events: [
+                    { time: "09:30", title: "莫埃來沼公園", desc: "租借腳踏車環園，爬玻璃金字塔和人造山，腹地極大風景絕佳", icon: "fa-bicycle", link: "Moerenuma Park", highlight: true },
+                    { time: "14:00", title: "F-Village (鬥士隊主場)", desc: "戶外有兒童遊樂設施與草皮，大人也能在充滿設計感的商場休息吃美食", icon: "fa-baseball", link: "ES CON FIELD HOKKAIDO" }
+                ]
+            },
+            {
+                date: "08/25 (二)",
+                title: "Day 7: 札幌市內彈性行程",
+                area: "札幌市區",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Sapporo+TV+Tower/Sapporo+Maruyama+Zoo",
+                mapFocus: "Sapporo TV Tower",
+                events: [
+                    { time: "全天", title: "行程緩衝日", desc: "作為緊湊行程的休息。可安排札幌電視塔看風景、圓山動物園", icon: "fa-mug-hot" },
+                    { time: "彈性", title: "分組行動/自由採買", desc: "讓兩家人各自在市區彈性行動，補齊還沒買的東西", icon: "fa-bag-shopping" }
+                ]
+            },
+            {
+                date: "08/26 (三)",
+                title: "Day 8: 洞爺湖頂級溫泉與煙火",
+                area: "洞爺湖",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Lake+Toya/The+Lake+View+Toya+Nonokaze+Resort",
+                mapFocus: "The Lake View Toya Nonokaze Resort",
+                events: [
+                    { time: "上午", title: "寄放行李出發", desc: "大件行李放原飯店/車上，帶輕便一晚衣物出發 (車程約 2 小時)", icon: "fa-suitcase" },
+                    { time: "14:00", title: "洞爺湖遊覽船 / 纜車", desc: "搭船遊湖或搭有珠山纜車看風景", icon: "fa-ship", link: "Lake Toya" },
+                    { time: "16:00", title: "入住 洞爺乃之風", desc: "【重要】需出示事先登錄的 QR Code。享受高水準豐富自助餐！", icon: "fa-hot-tub-person", alert: "important", link: "The Lake View Toya Nonokaze Resort" },
+                    { time: "20:45", title: "洞爺湖水上煙火大會", desc: "全湖景房間內，或頂樓無邊際露天溫泉欣賞！", icon: "fa-fire", highlight: true }
+                ]
+            },
+            {
+                date: "08/27 (四)",
+                title: "Day 9: 登別地獄谷 ➔ 返回札幌",
+                area: "登別",
+                route: "https://www.google.com/maps/dir/The+Lake+View+Toya+Nonokaze+Resort/Noboribetsu+Jigokudani/Noboribetsu+Marine+Park+Nixe/Ibis+Styles+Sapporo",
+                mapFocus: "Noboribetsu Marine Park Nixe",
+                events: [
+                    { time: "10:30", title: "登別地獄谷", desc: "乃之風退房後驅車前往登別 (約 1 小時)。漫步木棧道", icon: "fa-volcano", link: "Noboribetsu Jigokudani" },
+                    { time: "13:00", title: "尼克斯海洋公園", desc: "看著名的企鵝遊行和海豚表演，距離近，適合孩子不會走到鐵腿", icon: "fa-fish-fins", link: "Noboribetsu Marine Park Nixe", highlight: true },
+                    { time: "傍晚", title: "驅車返回札幌", desc: "再次入住宜必思酒店 (第二段訂單)", icon: "fa-car" }
+                ]
+            },
+            {
+                date: "08/28 (五)",
+                title: "Day 10: 滿載而歸",
+                area: "歸途",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/New+Chitose+Airport",
+                mapFocus: "New Chitose Airport",
+                events: [
+                    { time: "09:30", title: "前往新千歲機場", desc: "多留點時間，國內線有 哆啦A夢天空公園 讓孩子玩耍，大人買伴手禮", icon: "fa-taxi", link: "New Chitose Airport" },
+                    { time: "15:05", title: "起飛 CI 131", desc: "CTS (TI) -> TPE (T2)，預計 18:15 抵達", icon: "fa-plane-departure", highlight: true }
+                ]
+            }
+        ];
 
-            // 顯示目標內容並加上動畫
-            const targetTab = document.getElementById('tab-' + tabId);
-            targetTab.classList.remove('hidden');
-            // 觸發重繪以重啟動畫
-            void targetTab.offsetWidth;
-            targetTab.classList.add('fade-in');
+        // --- Guide Content ---
+        const guideData = [
+            {
+                region: "札幌市區 (Sapporo)",
+                anchor: "guide-sapporo",
+                items: [
+                    {
+                        title: "瀧野鈴蘭丘陵公園",
+                        mapQuery: "Takino Suzuran Hillside Park",
+                        hours: "09:00 - 17:00 (夏季)",
+                        closed: "無休",
+                        content: "北海道唯一國營公園，超級適合 6-10 歲兒童！必玩「大地歡樂谷」的巨型彈跳床（熔岩谷）、超長溜滑梯，還有滾球區。建議帶換洗衣物與毛巾。"
+                    },
+                    {
+                        title: "白色戀人公園",
+                        mapQuery: "Shiroi Koibito Park",
+                        hours: "10:00 - 17:00",
+                        closed: "無休",
+                        content: "彷彿走進歐洲童話世界，除了參觀巧克力工廠，一定要帶小朋友去體驗畫專屬自己的巨大白色戀人餅乾。戶外的機關鐘塔整點會有可愛的表演。"
+                    },
+                    {
+                        title: "莫埃來沼公園",
+                        mapQuery: "Moerenuma Park",
+                        hours: "07:00 - 22:00",
+                        closed: "無休",
+                        content: "由知名建築師野口勇設計的藝術公園。務必在入口處租借自行車（有兒童車款）。園內有壯觀的「玻璃金字塔」和可以爬上去的「莫埃來山」，充滿空間感與自然美。"
+                    },
+                    {
+                        title: "北海道日本火腿鬥士隊 F-Village",
+                        mapQuery: "ES CON FIELD HOKKAIDO",
+                        hours: "依設施而定",
+                        closed: "非比賽日亦有部分開放",
+                        content: "2023年全新落成的新主場！即使沒有比賽，這裡也有非常多戶外兒童遊樂設施、草皮，大人也能在充滿設計感的商場休息吃美食。"
+                    }
+                ]
+            },
+            {
+                region: "富良野 & 美瑛 (Furano & Biei)",
+                anchor: "guide-furano",
+                items: [
+                    {
+                        title: "四季彩之丘",
+                        mapQuery: "Shikisaisai no Oka",
+                        hours: "08:40 - 17:00 (8月)",
+                        closed: "無休",
+                        content: "佔地極廣的丘陵花田。非常推薦一家人搭乘「NOROKKO號」遊園拖拉機，輕鬆繞行花海。園區內有草泥馬牧場，可以買高麗菜餵食，小朋友會非常開心。"
+                    },
+                    {
+                        title: "森林精靈露臺 (Ningle Terrace)",
+                        mapQuery: "Ningle Terrace",
+                        hours: "12:00 - 20:45",
+                        closed: "無休",
+                        content: "位於富良野新王子大飯店旁的森林小木屋聚落，販售各式精緻手工藝品（木雕、紙藝、萬花筒）。傍晚點燈後氣氛絕佳，是買紀念品的好地方。"
+                    }
+                ]
+            },
+            {
+                region: "洞爺 & 登別 (Toya & Noboribetsu)",
+                anchor: "guide-toya",
+                items: [
+                    {
+                        title: "洞爺湖水上煙火大會",
+                        mapQuery: "Lake Toya",
+                        hours: "20:45 - 21:05 (夏季每日)",
+                        closed: "雨天可能取消",
+                        content: "長達半年的夏季煙火大會。煙火船會沿著湖面移動施放，住在「乃之風」等面湖飯店可直接在房間或頂樓露天溫泉欣賞，是最頂級的享受。"
+                    },
+                    {
+                        title: "尼克斯海洋公園",
+                        mapQuery: "Noboribetsu Marine Park Nixe",
+                        hours: "09:00 - 17:00",
+                        closed: "無休",
+                        content: "位於登別，充滿北歐城堡風格的海洋館。主打「企鵝大遊行」（每天有固定場次，請提前確認），能近距離看企鵝搖搖晃晃走路，還有精彩的海豚海獅秀。"
+                    }
+                ]
+            }
+        ];
 
-            // 設置按鈕顏色
-            btnElement.classList.remove('text-journal-brown');
-            btnElement.classList.add('text-journal-accent');
+        // --- Shopping Data ---
+        const shoppingData = [
+            {
+                brand: "三井 Outlet Park 札幌北廣島",
+                icon: "fa-bag-shopping",
+                stores: [
+                    { area: "北廣島", name: "北海道最大規模 Outlet", desc: "室內逛街舒適。想找 US 10 號 Nike 球鞋、HOKA、On 跑鞋這裡款式豐富。", link: "Mitsui Outlet Park Sapporo Kitahiroshima" }
+                ]
+            },
+            {
+                brand: "大通 / 狸小路商圈",
+                icon: "fa-store",
+                stores: [
+                    { area: "札幌", name: "狸小路商店街", desc: "札幌市區採買聖地，有遮雨棚。藥妝、伴手禮一次買齊。", link: "Tanukikoji Shopping Street" },
+                    { area: "札幌", name: "MEGA唐吉訶德 狸小路本店", desc: "24小時營業，回飯店前最後補貨的好去處。", link: "MEGA Don Quijote Sapporo Tanukikoji" }
+                ]
+            },
+            {
+                brand: "機場伴手禮",
+                icon: "fa-plane-departure",
+                stores: [
+                    { area: "千歲", name: "新千歲機場 國內線", desc: "全北海道的伴手禮這裡都有！還有哆啦A夢天空公園讓孩子放電。", link: "New Chitose Airport" }
+                ]
+            }
+        ];
 
-            // 滾動回頂部
-            window.scrollTo(0, 0);
+        // --- Chain Restaurant Data ---
+        const chainRestData = [
+            {
+                brand: "湯咖哩 (Soup Curry)",
+                icon: "fa-bowl-rice",
+                stores: [
+                    { area: "札幌", name: "Suage+", desc: "蔬菜鮮甜，肉串可以選炸過或烤過，當地超人氣。", link: "Soup Curry Suage+" },
+                    { area: "札幌", name: "GARAKU", desc: "排隊名店，和風高湯底，辣度可自由調整。", link: "Soup Curry GARAKU" },
+                    { area: "札幌", name: "Picante", desc: "近北海道大學，香料味濃郁，也是在地人愛店。", link: "Picante" }
+                ]
+            },
+            {
+                brand: "甜點 / 下午茶",
+                icon: "fa-cake-candles",
+                stores: [
+                    { area: "小樽", name: "LeTAO 本店", desc: "必吃雙層起司蛋糕 (Double Fromage)，二樓有內用咖啡廳。", link: "LeTAO Main Store" },
+                    { area: "札幌", name: "六花亭 札幌本店", desc: "除了買奶油蘭姆葡萄乾夾心餅乾，內用限定的冰淇淋與甜點也很讚。", link: "Rokkatei Sapporo Head Office" }
+                ]
+            }
+        ];
+
+        // --- Food Map Data ---
+        const foodData = [
+            {
+                area: "札幌 & 小樽",
+                spots: [
+                    { 
+                        name: "成吉思汗烤肉 (達摩)", 
+                        type: "烤羊肉", 
+                        icon: "fa-fire", 
+                        desc: "札幌靈魂美食，沒有羊騷味，配啤酒絕讚！", 
+                        link: "Jingisukan Daruma 6.4",
+                        price: "¥2,000 ~ ¥4,000"
+                    },
+                    { 
+                        name: "三角市場 (小樽)", 
+                        type: "海鮮丼", 
+                        icon: "fa-fish", 
+                        desc: "小樽站旁，超澎湃的海鮮勝手丼 (自選配料)。", 
+                        link: "Sankaku Market",
+                        price: "¥2,000 ~ ¥5,000"
+                    }
+                ]
+            },
+            {
+                area: "飯店頂級餐飲",
+                spots: [
+                    { 
+                        name: "洞爺乃之風 自助餐", 
+                        type: "Buffet", 
+                        icon: "fa-utensils", 
+                        desc: "飯店內的高級 Buffet，提供大量北海道現流海鮮、現烤牛排以及當地契作農場的蔬菜！", 
+                        link: "The Lake View Toya Nonokaze Resort",
+                        price: "含於房價內"
+                    }
+                ]
+            }
+        ];
+
+        // --- Taxi Logic (Hokkaido) ---
+        const taxiRates = {
+            sapporo: { base: 670, baseKm: 1.28, unitPrice: 80, unitKm: 0.239 }
+        };
+
+        const commonRoutes = {
+            sapporo: [
+                { name: "新千歲機場 ➔ 札幌市區飯店", dist: 50 },
+                { name: "札幌市區 ➔ 莫埃來沼公園", dist: 12 },
+                { name: "札幌市區 ➔ 白色戀人公園", dist: 8 },
+                { name: "札幌市區 ➔ 瀧野鈴蘭丘陵公園", dist: 18 }
+            ]
+        };
+
+        let isNightRate = false;
+
+        function toggleNightRate() {
+            const toggle = document.getElementById('night-toggle');
+            isNightRate = toggle.checked;
+            calculateTaxi();
         }
 
-        // -----------------------
-        // 計程車資估算邏輯
-        // -----------------------
-        function calculateTaxi() {
-            const distance = parseFloat(document.getElementById('taxi-dist').value);
-            const isNight = document.getElementById('taxi-night').checked;
+        function updateTaxiCalc(region, routeDist = 0) {
+            const select = document.getElementById('taxi-routes');
+            if (!select) return;
+
+            const distInput = document.getElementById('taxi-dist');
             
-            if (isNaN(distance) || distance <= 0) {
-                document.getElementById('taxi-result').innerText = '0 JPY';
-                document.getElementById('taxi-twd-result').innerText = '(約 0 TWD)';
+            // Pop route options
+            select.innerHTML = '<option value="0">選擇熱門路線 (自動帶入距離)</option>';
+            commonRoutes[region].forEach(r => {
+                const opt = document.createElement('option');
+                opt.value = r.dist;
+                opt.text = r.name;
+                select.appendChild(opt);
+            });
+
+            select.dataset.currentRegion = region;
+            
+            if(routeDist > 0) {
+                distInput.value = routeDist;
+                calculateTaxi();
+            }
+        }
+
+        function calculateTaxi() {
+            const distInput = document.getElementById('taxi-dist');
+            const select = document.getElementById('taxi-routes');
+            const resultArea = document.getElementById('taxi-result');
+            
+            if (!distInput || !select || !resultArea) return;
+
+            const region = select.dataset.currentRegion || 'sapporo';
+            const dist = parseFloat(distInput.value);
+
+            if (!dist || dist <= 0) {
+                resultArea.innerHTML = '<span class="text-gray-400">請輸入距離或選擇路線</span>';
                 return;
             }
 
-            // 札幌計程車費率 (2024/2025參考)
-            // 起跳 1.28km = 670 日圓
-            // 之後每 239m = 80 日圓
-            let fare = 670;
-            if (distance > 1.28) {
-                const extraDistance = distance - 1.28;
-                // 將公里轉為公尺計算區段
-                const segments = Math.ceil((extraDistance * 1000) / 239);
-                fare += segments * 80;
-            }
-
-            // 夜間加成 (大約 20%)
-            if (isNight) {
-                fare = Math.floor(fare * 1.2);
-            }
-
-            document.getElementById('taxi-result').innerHTML = `${fare.toLocaleString()} <span class="text-lg">JPY</span>`;
+            const rate = taxiRates[region];
+            let cost = rate.base;
             
-            // 簡單台幣換算 (假設匯率 0.21)
-            const twd = Math.round(fare * 0.21);
-            document.getElementById('taxi-twd-result').innerText = `(約 ${twd.toLocaleString()} TWD)`;
+            if (dist > rate.baseKm) {
+                const extraDist = dist - rate.baseKm;
+                const units = Math.ceil(extraDist / rate.unitKm);
+                cost += units * rate.unitPrice;
+            }
+
+            // Apply Night Rate
+            if (isNightRate) {
+                cost *= 1.2;
+            }
+
+            // Estimate range
+            const low = Math.floor(cost / 10) * 10;
+            const high = Math.ceil((cost * 1.25) / 10) * 10; 
+            const twd = Math.round(low * 0.21); // Simple TWD conversion
+
+            resultArea.innerHTML = `
+                <div class="flex flex-col items-center">
+                    <span class="text-xs text-gray-500 mb-1">預估車資 ${isNightRate ? '<span class="text-indigo-900 font-bold">(夜間)</span>' : ''}</span>
+                    <span class="text-2xl font-bold text-journal-accent">¥${low.toLocaleString()} ~ ¥${high.toLocaleString()}</span>
+                    <span class="text-sm text-journal-brown mt-1">(約 ${twd.toLocaleString()} TWD)</span>
+                    <span class="text-[10px] text-gray-400 mt-2">*實際費用依跳表為準 (含塞車/停等紅綠燈)</span>
+                </div>
+            `;
         }
 
-        // -----------------------
-        // 清單與備忘錄 (LocalStorage)
-        // -----------------------
-        const defaultChecklist = [
-            { id: 'item1', text: '護照 (檢查效期是否超過半年)', checked: false },
-            { id: 'item2', text: '日幣現金與信用卡 (準備高回饋卡)', checked: false },
-            { id: 'item3', text: '上網 SIM 卡或 Wi-Fi 機', checked: false },
-            { id: 'item4', text: '駕照日文譯本 (租車必備)', checked: false },
-            { id: 'item5', text: '小朋友換洗衣物 (多帶一套備用)', checked: false },
-            { id: 'item6', text: '薄外套 (北海道早晚溫差大)', checked: false },
-            { id: 'item7', text: '常備藥品 (腸胃藥、感冒藥、OK繃)', checked: false },
-            { id: 'item8', text: '折疊雨傘/輕便雨衣', checked: false }
+        // --- Checklist Data ---
+        const preTripListData = [
+            "護照 (檢查效期是否超過半年)", "日文駕照譯本 & 台灣駕照正本 (租車必備)", "VJW 登錄 (Visit Japan Web)",
+            "行動電源 & 充電線", "上網 SIM 卡或 Wi-Fi 機", "日幣現金與高回饋信用卡", 
+            "小朋友換洗衣物 (多帶一套備用)", "薄外套 (北海道早晚溫差大)", "泳衣 (洞爺湖飯店泡湯/玩水備用)",
+            "常備藥品 (腸胃藥、感冒藥、OK繃)", "折疊雨傘/輕便雨衣", "保養品/防曬",
+            "行李秤", "盥洗包"
         ];
 
-        function initLists() {
-            // 載入備忘錄
-            const savedMemo = localStorage.getItem('hokkaido_memo_2026');
-            const memoPad = document.getElementById('memo-pad');
-            if (savedMemo !== null) {
-                memoPad.value = savedMemo;
+        const shoppingListData = [
+            "US 10號 Nike / HOKA 跑鞋", "六花亭 奶油夾心餅乾", "LeTAO 雙層起司蛋糕", "白色戀人 巧克力", "薯條三兄弟", "日本常備藥妝"
+        ];
+
+        // --- State Management ---
+        const STATE = {
+            tab: 'plan',
+            checklist: JSON.parse(localStorage.getItem('hokkaido_check_26')) || {},
+            memo: localStorage.getItem('hokkaido_memo_26') || "",
+            expanded: {} 
+        };
+
+        // --- Render Functions ---
+        function init() {
+            render();
+            // Start Date: 2026-08-19
+            const start = new Date("2026-08-19");
+            const now = new Date();
+            const diffTime = now - start;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            
+            const displayEl = document.getElementById('current-day-display');
+            
+            if (diffDays >= 0 && diffDays < 10) {
+                displayEl.innerText = diffDays + 1;
+            } else if (diffDays >= 10) {
+                displayEl.innerText = "End";
+                displayEl.classList.add('text-gray-400', 'border-gray-300');
+                displayEl.classList.remove('text-journal-accent', 'border-journal-line');
+            } else {
+                displayEl.innerText = diffDays;
+                displayEl.classList.add('text-journal-blue');
             }
-            // 監聽輸入自動儲存
-            memoPad.addEventListener('input', (e) => {
-                localStorage.setItem('hokkaido_memo_2026', e.target.value);
+        }
+
+        function switchTab(tabName) {
+            STATE.tab = tabName;
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.dataset.target === tabName) {
+                    btn.classList.add('bg-journal-bg', 'text-journal-accent');
+                    btn.classList.remove('text-journal-brown');
+                } else {
+                    btn.classList.remove('bg-journal-bg', 'text-journal-accent');
+                    btn.classList.add('text-journal-brown');
+                }
             });
+            render();
+        }
 
-            // 載入清單
-            let checklistData = JSON.parse(localStorage.getItem('hokkaido_checklist_2026'));
-            if (!checklistData || checklistData.length === 0) {
-                checklistData = defaultChecklist;
+        function toggleShopDetails(id) {
+            const el = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+                STATE.expanded[id] = true;
+            } else {
+                el.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                STATE.expanded[id] = false;
             }
-
-            const container = document.getElementById('checklist-container');
+        }
+        
+        function render() {
+            const container = document.getElementById('app-container');
             container.innerHTML = '';
 
-            checklistData.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.className = 'flex items-center';
-                
-                const isChecked = item.checked ? 'checked' : '';
-                const textStyle = item.checked ? 'text-gray-400 line-through' : 'text-journal-ink';
+            switch(STATE.tab) {
+                case 'plan': renderPlan(container); break;
+                case 'guide': renderGuide(container); break;
+                case 'shops': renderShops(container); break;
+                case 'taxi': renderTaxi(container); break;
+                case 'lists': renderLists(container); break;
+                case 'info': renderInfo(container); break;
+            }
+            window.scrollTo(0,0);
+        }
 
-                li.innerHTML = `
-                    <input type="checkbox" id="${item.id}" class="round-checkbox mr-3" ${isChecked}>
-                    <label for="${item.id}" class="cursor-pointer flex-1 ${textStyle}">${item.text}</label>
+        // --- Render: PLAN ---
+        function renderPlan(container) {
+            let html = `<div class="space-y-8 fade-in">`;
+            
+            // 1. Date Navigation Bar
+            let navHtml = `
+                <div class="sticky top-0 z-10 bg-journal-bg/95 backdrop-blur border-b border-journal-line py-2 px-2 -mx-4 md:-mx-8 mb-4 overflow-x-auto hide-scrollbar flex space-x-2 shadow-sm">
+            `;
+            
+            tripData.forEach((day, index) => {
+                const dateStr = day.date.split(' ')[0]; 
+                navHtml += `
+                    <button id="nav-btn-${index}" onclick="scrollToDay(${index})" 
+                        class="flex-none px-3 py-1.5 rounded-lg border border-journal-line bg-white text-journal-ink text-xs font-bold shadow-sm whitespace-nowrap hover:bg-journal-accent hover:text-white transition">
+                        <span class="block text-[10px] text-gray-400">Day ${index + 1}</span>
+                        ${dateStr}
+                    </button>
                 `;
+            });
+            navHtml += `</div>`;
+            html += navHtml;
+            
+            tripData.forEach((day, index) => {
+                const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(day.mapFocus)}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
                 
-                // 綁定事件
-                const checkbox = li.querySelector('input');
-                const label = li.querySelector('label');
+                // Color Logic
+                let tapeClass = (index % 2 === 0) ? 'washi-tape-blue' : 'washi-tape-green';
                 
-                checkbox.addEventListener('change', (e) => {
-                    checklistData[index].checked = e.target.checked;
-                    localStorage.setItem('hokkaido_checklist_2026', JSON.stringify(checklistData));
-                    
-                    // 更新樣式
-                    if (e.target.checked) {
-                        label.classList.add('text-gray-400', 'line-through');
-                        label.classList.remove('text-journal-ink');
-                    } else {
-                        label.classList.remove('text-gray-400', 'line-through');
-                        label.classList.add('text-journal-ink');
-                    }
+                html += `
+                    <div id="day-${index}" class="journal-card mt-4 scroll-mt-24">
+                        <div class="washi-tape-top ${tapeClass}"></div>
+                        
+                        <div class="px-5 py-4 border-b border-journal-line flex justify-between items-end bg-white rounded-t-xl">
+                            <div>
+                                <h3 class="font-bold text-journal-ink text-xl">${day.date}</h3>
+                                <p class="text-sm text-journal-brown mt-1">${day.title}</p>
+                            </div>
+                            <span class="text-[10px] bg-journal-bg border border-journal-line px-2 py-1 rounded text-journal-brown font-bold tracking-wide whitespace-nowrap ml-2">${day.area}</span>
+                        </div>
+                        
+                        <!-- Map Preview -->
+                        <div class="relative w-full h-32 bg-gray-100 group border-b border-journal-line border-dashed">
+                            <iframe 
+                                width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
+                                src="${mapEmbedUrl}" loading="lazy" class="opacity-90 group-hover:opacity-100 transition-opacity pointer-events-none"
+                            ></iframe>
+                            <a href="${day.route}" target="_blank" class="btn-hand absolute bottom-2 right-2 bg-white/90 backdrop-blur text-journal-ink text-xs px-3 py-1.5 rounded-lg shadow-md hover:text-journal-accent flex items-center border border-journal-line">
+                                <i class="fa-solid fa-diamond-turn-right mr-1.5"></i> 查看路線
+                            </a>
+                        </div>
+
+                        <div class="p-5 relative">
+                `;
+
+                day.events.forEach((event, idx) => {
+                    const isLast = idx === day.events.length - 1;
+                    const alertText = event.alert === 'important' ? 'text-journal-accent font-bold' : 'text-journal-ink';
+                    const linkBtn = event.link ? `<button onclick="openMap('${event.link}')" class="mt-2 text-xs flex items-center text-journal-brown hover:text-journal-accent transition-colors"><i class="fa-solid fa-map-location-dot mr-1"></i> Google Maps</button>` : '';
+
+                    html += `
+                        <div class="relative pl-8 pb-6 ${isLast ? 'last-item' : 'timeline-line'}">
+                            <div class="absolute left-0 top-0 w-8 flex justify-center">
+                                <div class="w-2.5 h-2.5 rounded-full bg-journal-line border-2 border-white mt-1.5 z-10 box-content"></div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="font-mono text-sm font-bold text-journal-brown mr-3 min-w-[45px]">${event.time}</span>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fa-solid ${event.icon} text-xs text-journal-brown/50"></i>
+                                        <h4 class="font-medium ${alertText}">${event.title}</h4>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-1 leading-relaxed pl-5 border-l-2 border-journal-bg ml-1.5">${event.desc}</p>
+                                    <div class="pl-6">${linkBtn}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 });
 
-                container.appendChild(li);
+                html += `</div></div>`;
+            });
+            html += `</div>`;
+            container.innerHTML = html;
+
+            // ScrollSpy
+            setTimeout(() => {
+                const observerOptions = { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 };
+                const observer = new IntersectionObserver((entries) => {
+                    if (isNavigating) return;
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const dayIndex = entry.target.id.split('-')[1];
+                            updateActiveNav(dayIndex);
+                        }
+                    });
+                }, observerOptions);
+
+                tripData.forEach((_, index) => {
+                    const el = document.getElementById(`day-${index}`);
+                    if (el) observer.observe(el);
+                });
+            }, 100);
+        }
+
+        let isNavigating = false;
+        function scrollToDay(index) {
+            isNavigating = true;
+            const target = document.getElementById(`day-${index}`);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                updateActiveNav(index);
+                setTimeout(() => { isNavigating = false; }, 800);
+            }
+        }
+
+        function updateActiveNav(activeIndex) {
+            const navContainer = document.querySelector('.overflow-x-auto');
+            tripData.forEach((_, index) => {
+                const btn = document.getElementById(`nav-btn-${index}`);
+                if (btn) {
+                    if (index == activeIndex) {
+                        btn.classList.remove('bg-white', 'text-journal-ink', 'border-journal-line');
+                        btn.classList.add('bg-journal-accent', 'text-white', 'border-journal-accent');
+                        if(navContainer) {
+                             const scrollLeft = btn.offsetLeft - (navContainer.clientWidth / 2) + (btn.clientWidth / 2);
+                             navContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                        }
+                    } else {
+                        btn.classList.add('bg-white', 'text-journal-ink', 'border-journal-line');
+                        btn.classList.remove('bg-journal-accent', 'text-white', 'border-journal-accent');
+                    }
+                }
             });
         }
 
-        // 初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            initLists();
-        });
+        // --- Render: GUIDE ---
+        function renderGuide(container) {
+            let html = `<div class="fade-in space-y-8 pb-4 relative pt-16">`;
+
+            html += `
+                <div class="fixed top-[100px] left-0 right-0 z-10 flex justify-center space-x-2 md:space-x-4 pointer-events-none px-2 md:max-w-4xl md:mx-auto">
+                    <div class="bg-journal-bg/95 backdrop-blur px-3 py-2 rounded-full border border-journal-line shadow-sm pointer-events-auto flex space-x-2 md:space-x-4 overflow-x-auto hide-scrollbar max-w-full">
+                        <button onclick="document.getElementById('guide-sapporo').scrollIntoView({behavior: 'smooth'})" class="px-3 py-1.5 rounded-full bg-white border border-journal-blue text-journal-blue text-xs font-bold shadow-sm active:scale-95 transition whitespace-nowrap">
+                            <i class="fa-solid fa-city mr-1"></i> 札幌
+                        </button>
+                        <button onclick="document.getElementById('guide-furano').scrollIntoView({behavior: 'smooth'})" class="px-3 py-1.5 rounded-full bg-white border border-journal-green text-journal-green text-xs font-bold shadow-sm active:scale-95 transition whitespace-nowrap">
+                            <i class="fa-solid fa-tree mr-1"></i> 美瑛富良野
+                        </button>
+                         <button onclick="document.getElementById('guide-toya').scrollIntoView({behavior: 'smooth'})" class="px-3 py-1.5 rounded-full bg-white border border-journal-brown text-journal-brown text-xs font-bold shadow-sm active:scale-95 transition whitespace-nowrap">
+                            <i class="fa-solid fa-water mr-1"></i> 洞爺登別
+                        </button>
+                    </div>
+                </div>
+             `;
+            
+            guideData.forEach(section => {
+                const anchorId = section.anchor ? `id="${section.anchor}"` : '';
+                const iconClass = 'fa-map-location-dot text-journal-green';
+
+                html += `
+                    <div ${anchorId} class="journal-card p-5 scroll-mt-40">
+                        <button onclick="toggleShopDetails('${section.anchor}-details')" class="w-full flex items-center justify-between">
+                            <h3 class="font-bold text-journal-ink text-lg pb-3 border-b-2 border-dashed border-journal-line mb-4 flex items-center">
+                                <i class="fa-solid ${iconClass} mr-2"></i> ${section.region}
+                            </h3>
+                            <i id="icon-${section.anchor}-details" class="fa-solid fa-chevron-down text-journal-brown text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div id="${section.anchor}-details" class="space-y-6 hidden">
+                `;
+
+                html += section.items.map(item => `
+                    <div class="transform transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-journal-ink text-base border-l-4 border-journal-bg pl-2">${item.title}</h4>
+                            ${item.mapQuery ? `<button onclick="openMap('${item.mapQuery}')" class="btn-hand bg-white border border-journal-line px-2 py-1 rounded text-xs text-journal-brown hover:text-journal-accent"><i class="fa-solid fa-location-arrow"></i></button>` : ''}
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <div class="flex items-center text-xs text-journal-accent font-mono bg-journal-bg/30 px-2 py-1 rounded w-fit">
+                                <i class="fa-regular fa-clock mr-1.5"></i> ${item.hours}
+                            </div>
+                            ${item.closed ? `<div class="flex items-center text-xs text-journal-brown font-mono bg-gray-100 px-2 py-1 rounded w-fit"><i class="fa-solid fa-ban mr-1.5"></i> ${item.closed}</div>` : ''}
+                        </div>
+                        <div class="text-sm leading-7 text-gray-600 font-sans pl-2">${item.content}</div>
+                    </div>
+                `).join('<div class="border-b border-journal-line/30 my-4"></div>');
+
+                html += `</div></div>`;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        // --- Render: SHOPS ---
+        function renderShops(container) {
+             let html = `<div class="fade-in space-y-8 pb-4 relative pt-16">`;
+             
+             html += `
+                <div class="fixed top-[100px] left-0 right-0 z-10 flex justify-center space-x-4 pointer-events-none md:max-w-4xl md:mx-auto">
+                    <div class="bg-journal-bg/95 backdrop-blur px-4 py-2 rounded-full border border-journal-line shadow-sm pointer-events-auto flex space-x-4">
+                        <button onclick="document.getElementById('section-shopping').scrollIntoView({behavior: 'smooth'})" class="px-4 py-1.5 rounded-full bg-white border border-journal-accent text-journal-accent text-xs font-bold shadow-sm active:scale-95 transition">
+                            <i class="fa-solid fa-bag-shopping mr-1"></i> 必買購物
+                        </button>
+                        <button onclick="document.getElementById('section-food').scrollIntoView({behavior: 'smooth'})" class="px-4 py-1.5 rounded-full bg-white border border-journal-brown text-journal-brown text-xs font-bold shadow-sm active:scale-95 transition">
+                            <i class="fa-solid fa-utensils mr-1"></i> 美食地圖
+                        </button>
+                    </div>
+                </div>
+             `;
+             
+             // Shopping Section
+             html += `<div id="section-shopping" class="scroll-mt-40 journal-card p-5 border-2 border-journal-accent/20 bg-journal-bg/30">
+                        <h3 class="font-bold text-journal-accent text-lg mb-4 flex items-center">
+                            <i class="fa-solid fa-bag-shopping mr-2"></i> 必買購物清單
+                        </h3>
+                        <div class="space-y-4">`;
+             
+             shoppingData.forEach((brand, index) => {
+                 html += `
+                    <div class="bg-white rounded-xl border border-journal-line overflow-hidden shadow-sm">
+                        <button onclick="toggleShopDetails('shop-${index}')" class="w-full flex items-center justify-between p-3 bg-white hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-journal-accent/10 flex items-center justify-center text-journal-accent mr-3 text-sm">
+                                    <i class="fa-solid ${brand.icon}"></i>
+                                </div>
+                                <h4 class="font-bold text-journal-ink text-left">${brand.brand}</h4>
+                            </div>
+                            <i id="icon-shop-${index}" class="fa-solid fa-chevron-down text-journal-brown text-sm transition-transform duration-300"></i>
+                        </button>
+                        
+                        <div id="shop-${index}" class="hidden bg-journal-bg/20 border-t border-dashed border-journal-line p-3 space-y-3">
+                            ${brand.stores.map(store => `
+                                <div class="flex justify-between items-start text-xs pb-2 border-b border-journal-line/30 last:border-0 last:pb-0">
+                                    <div>
+                                        <span class="inline-block px-1.5 py-0.5 rounded bg-white border border-journal-line text-journal-brown mb-1 scale-90 origin-left">${store.area}</span>
+                                        <p class="font-bold text-journal-ink text-sm">${store.name}</p>
+                                        <p class="text-gray-500 mt-0.5 leading-tight">${store.desc}</p>
+                                    </div>
+                                    <button onclick="openMap('${store.link}')" class="btn-hand bg-white border border-journal-line p-2 rounded text-journal-brown hover:text-journal-accent ml-2 shrink-0">
+                                        <i class="fa-solid fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                 `;
+             });
+             html += `</div></div>`;
+
+             // Chain Restaurants
+             html += `<div id="section-chain" class="scroll-mt-40 p-1 mt-6">
+                        <h3 class="font-bold text-journal-blue text-lg mb-4 flex items-center px-2">
+                            <i class="fa-solid fa-bowl-rice text-journal-blue mr-2"></i> 連鎖與必吃美食
+                        </h3>
+                        <div class="space-y-4">`;
+             chainRestData.forEach((chain, index) => {
+                 html += `
+                    <div class="bg-white rounded-xl border border-journal-line overflow-hidden shadow-sm">
+                        <button onclick="toggleShopDetails('chain-${index}')" class="w-full flex items-center justify-between p-3 bg-white hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-journal-blue/10 flex items-center justify-center text-journal-blue mr-3 text-sm">
+                                    <i class="fa-solid ${chain.icon}"></i>
+                                </div>
+                                <h4 class="font-bold text-journal-ink text-left">${chain.brand}</h4>
+                            </div>
+                            <i id="icon-chain-${index}" class="fa-solid fa-chevron-down text-journal-brown text-sm transition-transform duration-300"></i>
+                        </button>
+                        <div id="chain-${index}" class="hidden bg-journal-bg/20 border-t border-dashed border-journal-line p-3 space-y-3">
+                            ${chain.stores.map(store => `
+                                <div class="flex justify-between items-start text-xs pb-2 border-b border-journal-line/30 last:border-0 last:pb-0">
+                                    <div>
+                                        <span class="inline-block px-1.5 py-0.5 rounded bg-white border border-journal-line text-journal-brown mb-1 scale-90 origin-left">${store.area}</span>
+                                        <p class="font-bold text-journal-ink text-sm">${store.name}</p>
+                                        <p class="text-gray-500 mt-0.5 leading-tight">${store.desc}</p>
+                                    </div>
+                                    <button onclick="openMap('${store.link}')" class="btn-hand bg-white border border-journal-line p-2 rounded text-journal-brown hover:text-journal-accent ml-2 shrink-0">
+                                        <i class="fa-solid fa-location-arrow"></i>
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                 `;
+             });
+             html += `</div></div>`;
+
+             // Food Map
+             html += `<div id="section-food" class="scroll-mt-40 p-1 mt-6">
+                        <h3 class="font-bold text-journal-ink text-lg mb-4 flex items-center px-2">
+                            <i class="fa-solid fa-utensils text-journal-brown mr-2"></i> 餐廳地圖
+                        </h3>
+                        <div class="space-y-3">`;
+
+             foodData.forEach((region, index) => {
+                 html += `
+                    <div class="bg-white rounded-xl border border-journal-line overflow-hidden shadow-sm">
+                        <button onclick="toggleShopDetails('food-${index}')" class="w-full flex items-center justify-between p-4 bg-white hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-journal-bg flex items-center justify-center text-journal-brown mr-3 text-sm">
+                                    <i class="fa-solid fa-utensils"></i>
+                                </div>
+                                <h4 class="font-bold text-journal-ink text-left text-sm">${region.area}</h4>
+                            </div>
+                            <i id="icon-food-${index}" class="fa-solid fa-chevron-down text-journal-brown text-sm transition-transform duration-300"></i>
+                        </button>
+                        
+                        <div id="food-${index}" class="hidden bg-journal-bg/30 border-t border-dashed border-journal-line p-4 space-y-4">
+                            ${region.spots.map(spot => `
+                                <div class="flex justify-between items-start group">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="w-8 h-8 rounded-full bg-white border border-journal-line flex items-center justify-center text-journal-brown shrink-0 text-xs mt-0.5">
+                                            <i class="fa-solid ${spot.icon}"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-2 flex-wrap">
+                                                <h4 class="font-bold text-journal-ink text-sm">${spot.name}</h4>
+                                                <span class="text-[10px] text-journal-brown bg-white border border-journal-line px-1 rounded">${spot.type}</span>
+                                            </div>
+                                            <div class="flex items-center text-[10px] text-journal-accent mt-0.5 font-bold">
+                                                <i class="fa-solid fa-yen-sign mr-0.5"></i> ${spot.price}
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">${spot.desc}</p>
+                                        </div>
+                                    </div>
+                                    <button onclick="openMap('${spot.link}')" class="text-journal-line hover:text-journal-accent transition-colors p-2 self-start">
+                                        <i class="fa-solid fa-location-arrow text-sm"></i>
+                                    </button>
+                                </div>
+                            `).join('<div class="border-b border-journal-line/30 my-2"></div>')}
+                        </div>
+                    </div>
+                 `;
+             });
+             html += `</div></div></div>`;
+             container.innerHTML = html;
+        }
+
+        // --- Render: TAXI ---
+        function renderTaxi(container) {
+            let html = `
+                <div class="fade-in space-y-6 pb-4 pt-4">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-journal-bg border-2 border-dashed border-journal-line mb-3">
+                            <i class="fa-solid fa-calculator text-3xl text-journal-accent"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-journal-ink">北海道車資估算</h2>
+                        <p class="text-xs text-journal-brown mt-1">Hokkaido Taxi Fare (Sapporo)</p>
+                    </div>
+
+                    <div class="journal-card p-6 bg-white border border-journal-line shadow-sm relative overflow-hidden">
+                        <div class="relative z-10">
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="text-xs font-bold text-journal-ink block mb-2 flex items-center">
+                                        <i class="fa-solid fa-map-location-dot mr-1.5 text-journal-brown"></i> 快速選擇熱門路線
+                                    </label>
+                                    <div class="relative">
+                                        <select id="taxi-routes" onchange="updateTaxiCalc('sapporo', this.value)" class="w-full text-sm p-3 rounded-xl border border-journal-line bg-gray-50 outline-none appearance-none text-gray-600 font-sans" data-current-region="sapporo">
+                                            <!-- Options injected by JS -->
+                                        </select>
+                                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">
+                                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <label class="text-xs font-bold text-journal-ink flex items-center">
+                                            <i class="fa-solid fa-ruler-horizontal mr-1.5 text-journal-brown"></i> 自訂距離 (公里)
+                                        </label>
+                                        <label class="flex items-center cursor-pointer">
+                                            <span class="mr-2 text-xs font-bold text-journal-ink">夜間加成 (+20%)</span>
+                                            <div class="relative">
+                                                <input type="checkbox" id="night-toggle" class="sr-only" onchange="toggleNightRate()">
+                                                <div class="toggle-bg block bg-gray-200 w-9 h-5 rounded-full border border-journal-line transition duration-300 ease-in-out"></div>
+                                                <div class="toggle-dot absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transition duration-300 ease-in-out border border-gray-300 flex items-center justify-center">
+                                                    <i class="toggle-icon fa-solid fa-moon text-[8px] text-journal-brown opacity-0 transition-opacity duration-300"></i>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <input type="number" id="taxi-dist" placeholder="0" class="flex-1 p-3 text-lg font-mono border border-journal-line rounded-xl outline-none focus:border-journal-accent bg-white shadow-inner">
+                                        <button onclick="calculateTaxi()" class="px-6 py-3 bg-journal-ink text-white rounded-xl text-sm font-bold shadow-md active:scale-95 transition hover:bg-journal-brown">
+                                            計算
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 relative">
+                                <div class="absolute left-0 right-0 top-1/2 border-t-2 border-dashed border-journal-line/30"></div>
+                                <div class="relative z-10 flex justify-center">
+                                    <span class="bg-white px-3 text-xs text-journal-brown/60">ESTIMATE</span>
+                                </div>
+                            </div>
+
+                            <div id="taxi-result" class="mt-4 p-5 bg-journal-bg rounded-xl border border-journal-line text-center min-h-[100px] flex flex-col items-center justify-center">
+                                <span class="text-sm text-gray-400 mb-1">請選擇路線或輸入距離</span>
+                                <i class="fa-solid fa-coins text-2xl text-journal-line mt-2"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/80 p-4 rounded-xl border border-journal-line/50 text-xs text-gray-500 leading-relaxed">
+                        <h4 class="font-bold text-journal-ink mb-2"><i class="fa-solid fa-circle-exclamation mr-1 text-journal-accent"></i> 札幌計程車費率參考</h4>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li>起跳價約 670 日圓 (首 1.28 公里)。</li>
+                            <li>之後每 239 公尺增加 80 日圓。</li>
+                            <li>夜間 (22:00-05:00) 加成約 20%。</li>
+                            <li>此估算僅供參考，實際費用會因塞車、停等紅綠燈而有差異。</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            container.innerHTML = html;
+            isNightRate = false;
+            updateTaxiCalc('sapporo');
+        }
+
+        // --- Render: LISTS ---
+        function renderLists(container) {
+            let html = `<div class="fade-in space-y-6 pb-4 pt-4">`;
+
+            const isPreTripOpen = STATE.expanded['pre-trip-list'];
+            const isShopListOpen = STATE.expanded['shopping-list'];
+
+            html += `
+                <div class="journal-card overflow-hidden">
+                    <button onclick="toggleShopDetails('pre-trip-list')" class="w-full flex items-center justify-between px-5 py-3 bg-journal-bg border-b border-journal-line">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-clipboard-check text-journal-accent mr-2"></i>
+                            <h3 class="font-bold text-journal-ink">行前清單</h3>
+                        </div>
+                        <i id="icon-pre-trip-list" class="fa-solid fa-chevron-down text-journal-brown text-sm transition-transform duration-300 ${isPreTripOpen ? 'rotate-180' : ''}"></i>
+                    </button>
+                    <div id="pre-trip-list" class="${isPreTripOpen ? '' : 'hidden'} divide-y divide-journal-line/50">
+                        ${preTripListData.map((item, idx) => `
+                            <label class="flex items-center px-5 py-3.5 cursor-pointer hover:bg-journal-bg/30 transition">
+                                <input type="checkbox" class="w-5 h-5 text-journal-accent rounded border-gray-300 focus:ring-journal-accent" 
+                                    ${STATE.checklist[item] ? 'checked' : ''} 
+                                    onchange="toggleCheck('${item}')">
+                                <span class="ml-3 text-sm ${STATE.checklist[item] ? 'text-gray-400 line-through' : 'text-journal-ink'}">${item}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            html += `
+                <div class="journal-card overflow-hidden">
+                    <button onclick="toggleShopDetails('shopping-list')" class="w-full flex items-center justify-between px-5 py-3 bg-journal-bg border-b border-journal-line">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-cart-shopping text-journal-blue mr-2"></i>
+                            <h3 class="font-bold text-journal-ink">購買清單</h3>
+                        </div>
+                        <i id="icon-shopping-list" class="fa-solid fa-chevron-down text-journal-brown text-sm transition-transform duration-300 ${isShopListOpen ? 'rotate-180' : ''}"></i>
+                    </button>
+                    <div id="shopping-list" class="${isShopListOpen ? '' : 'hidden'} divide-y divide-journal-line/50">
+                        ${shoppingListData.map((item, idx) => `
+                            <label class="flex items-center px-5 py-3.5 cursor-pointer hover:bg-journal-bg/30 transition">
+                                <input type="checkbox" class="w-5 h-5 text-journal-blue rounded border-gray-300 focus:ring-journal-blue" 
+                                    ${STATE.checklist[item] ? 'checked' : ''} 
+                                    onchange="toggleCheck('${item}')">
+                                <span class="ml-3 text-sm ${STATE.checklist[item] ? 'text-gray-400 line-through' : 'text-journal-ink'}">${item}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            html += `
+                <div class="journal-card flex flex-col h-80 relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-journal-line rounded-full border-4 border-journal-bg shadow-inner"></div>
+                     <div class="px-5 py-4 border-b border-journal-line flex justify-between items-center bg-journal-bg/50 rounded-t-xl mt-2">
+                        <h3 class="font-bold text-journal-ink">備忘錄</h3>
+                        <span class="text-[10px] text-gray-400">自動儲存</span>
+                    </div>
+                    <textarea id="memo-area" class="flex-1 p-5 w-full resize-none focus:outline-none text-sm leading-relaxed bg-transparent" 
+                        placeholder="輸入筆記、網址連結..." oninput="saveMemo(this.value)">${STATE.memo}</textarea>
+                    
+                    <div class="bg-journal-bg/30 px-4 py-2 border-t border-journal-line min-h-[40px] flex flex-wrap gap-2 rounded-b-xl" id="memo-links">
+                    </div>
+                </div>
+            </div>`;
+            
+            container.innerHTML = html;
+            updateMemoLinks(STATE.memo);
+        }
+
+        // --- Render: INFO ---
+        function renderInfo(container) {
+            let html = `
+                <div class="fade-in space-y-6 pb-4 pt-4">
+                    <!-- Hotel Info -->
+                    <div class="journal-card p-6 bg-journal-bg/30">
+                        <h3 class="font-bold text-journal-ink mb-4 flex items-center text-lg">
+                            <i class="fa-solid fa-hotel text-journal-accent mr-2"></i> 住宿憑證
+                        </h3>
+                        <div class="space-y-6">
+                            
+                            <!-- Ibis Styles Sapporo (1) -->
+                            <div class="relative bg-white rounded-xl shadow-sm overflow-hidden border border-journal-line">
+                                <div class="ticket-notch ticket-notch-left"></div>
+                                <div class="ticket-notch ticket-notch-right"></div>
+                                <div class="bg-journal-blue/10 p-3 border-b border-dashed border-journal-blue/30 flex justify-between items-center">
+                                    <span class="text-xs font-bold text-journal-blue uppercase tracking-wider">札幌 (第一段)</span>
+                                    <span class="text-[10px] bg-white border border-journal-blue/30 px-2 py-0.5 rounded text-journal-blue font-bold">現場支付</span>
+                                </div>
+                                <div class="p-5 pt-6">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div>
+                                            <h4 class="font-bold text-journal-ink text-base">宜必思尚品札幌酒店</h4>
+                                            <span class="text-[10px] text-gray-500">豪華家庭房 (2單人床+1堆疊床)</span>
+                                        </div>
+                                        <button onclick="openMap('Ibis Styles Sapporo')" class="text-gray-400 hover:text-journal-accent"><i class="fa-solid fa-location-dot"></i></button>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 mb-3">
+                                        <div class="bg-gray-50 p-2 rounded">
+                                            <span class="block text-[9px] text-gray-400">IN</span>
+                                            <span class="font-mono font-bold text-journal-ink text-sm">08/19 (三)</span>
+                                        </div>
+                                        <div class="bg-gray-50 p-2 rounded">
+                                            <span class="block text-[9px] text-gray-400">OUT</span>
+                                            <span class="font-mono font-bold text-journal-ink text-sm">08/26 (三)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center border-t border-dashed border-journal-line pt-2">
+                                        <span class="font-mono text-xs text-gray-500">單號: QDZSDFXD</span>
+                                        <span class="text-sm font-bold text-journal-accent">JPY 188,100</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nonokaze Resort -->
+                            <div class="relative bg-white rounded-xl shadow-md overflow-hidden border border-journal-line ring-1 ring-journal-accent/20">
+                                <div class="ticket-notch ticket-notch-left"></div>
+                                <div class="ticket-notch ticket-notch-right"></div>
+                                <div class="bg-journal-green/10 p-3 border-b border-dashed border-journal-green/30 flex justify-between items-center">
+                                    <span class="text-xs font-bold text-journal-green uppercase tracking-wider">洞爺湖</span>
+                                    <span class="text-[10px] bg-white border border-journal-green/30 px-2 py-0.5 rounded text-journal-green font-bold">現場支付</span>
+                                </div>
+                                <div class="p-5 pt-6">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div>
+                                            <h4 class="font-bold text-journal-ink text-lg">洞爺乃之風度假酒店</h4>
+                                            <div class="flex items-center text-xs text-gray-500 mt-1">
+                                                <i class="fa-solid fa-bed mr-1.5"></i> 全湖景客房 x 1晚
+                                            </div>
+                                        </div>
+                                        <button onclick="openMap('The Lake View Toya Nonokaze Resort')" class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-journal-brown hover:text-journal-accent transition">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-3 mb-4 mt-2">
+                                        <div class="bg-journal-bg/50 p-2.5 rounded border border-journal-line/50">
+                                            <span class="block text-[9px] text-gray-400 uppercase tracking-wide">Check-in</span>
+                                            <span class="font-mono font-bold text-journal-ink text-sm">08/26 (三)</span>
+                                            <span class="block text-[10px] text-journal-accent font-bold mt-0.5">15:00</span>
+                                        </div>
+                                        <div class="bg-journal-bg/50 p-2.5 rounded border border-journal-line/50">
+                                            <span class="block text-[9px] text-gray-400 uppercase tracking-wide">Check-out</span>
+                                            <span class="font-mono font-bold text-journal-ink text-sm">08/27 (四)</span>
+                                            <span class="block text-[10px] text-journal-accent font-bold mt-0.5">11:00</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-orange-50/50 rounded p-2 mb-3 border border-orange-100">
+                                        <p class="text-[9px] font-bold text-orange-600 mb-1"><i class="fa-solid fa-mobile-screen mr-1"></i> QR Code 報到提醒：</p>
+                                        <p class="text-[9px] text-gray-600 leading-tight">住宿日3天前會收到 smart-checkin.jp 的信件，請提前點擊連結登錄資料以獲取報到 QR Code。</p>
+                                    </div>
+
+                                    <div class="flex justify-between items-end border-t border-dashed border-journal-line pt-3">
+                                        <span class="font-mono text-xs text-gray-500">單號: T839CE0FABA87</span>
+                                        <div class="text-right">
+                                            <span class="text-[9px] text-gray-400 block">總金額 (到場支付)</span>
+                                            <span class="text-xl font-bold text-journal-ink font-mono">JPY 78,166</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ibis Styles Sapporo (2) -->
+                            <div class="relative bg-white rounded-xl shadow-sm overflow-hidden border border-journal-line">
+                                <div class="ticket-notch ticket-notch-left"></div>
+                                <div class="ticket-notch ticket-notch-right"></div>
+                                <div class="bg-journal-blue/10 p-3 border-b border-dashed border-journal-blue/30 flex justify-between items-center">
+                                    <span class="text-xs font-bold text-journal-blue uppercase tracking-wider">札幌 (第二段)</span>
+                                    <span class="text-[10px] bg-white border border-journal-blue/30 px-2 py-0.5 rounded text-journal-blue font-bold">現場支付</span>
+                                </div>
+                                <div class="p-5 pt-6">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div>
+                                            <h4 class="font-bold text-journal-ink text-base">宜必思尚品札幌酒店</h4>
+                                            <span class="text-[10px] text-gray-500">豪華家庭房 (2單人床+2加床) 附早餐</span>
+                                        </div>
+                                        <button onclick="openMap('Ibis Styles Sapporo')" class="text-gray-400 hover:text-journal-accent"><i class="fa-solid fa-location-dot"></i></button>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 mb-3">
+                                        <div class="bg-gray-50 p-2 rounded">
+                                            <span class="block text-[9px] text-gray-400">IN</span>
+                                            <span class="font-mono font-bold text-journal-ink text-sm">08/27 (四)</span>
+                                        </div>
+                                        <div class="bg-gray-50 p-2 rounded">
+                                            <span class="block text-[9px] text-gray-400">OUT</span>
+                                            <span class="font-mono font-bold text-journal-ink text-sm">08/28 (五)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center border-t border-dashed border-journal-line pt-2">
+                                        <span class="font-mono text-xs text-gray-500">單號: QDZSDRDG</span>
+                                        <span class="text-sm font-bold text-journal-accent">JPY 37,050</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Flight Info -->
+                    <div class="journal-card p-6">
+                        <h3 class="font-bold text-journal-ink mb-4 flex items-center text-lg">
+                            <i class="fa-solid fa-plane text-journal-accent mr-2"></i> 航班行程
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-journal-bg rounded-lg p-3 border border-journal-line/50">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="font-bold text-journal-ink text-sm">08/19 (三)</span>
+                                    <span class="text-xs text-white bg-journal-blue px-2 py-0.5 rounded-full">去程</span>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500">
+                                    <span>08:35 台北 (T2) <i class="fa-solid fa-arrow-right mx-1"></i> 13:35 札幌 (TI)</span>
+                                    <span class="font-mono font-bold">CI 130</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-journal-bg rounded-lg p-3 border border-journal-line/50">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="font-bold text-journal-ink text-sm">08/28 (五)</span>
+                                    <span class="text-xs text-white bg-journal-accent px-2 py-0.5 rounded-full">回程</span>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500">
+                                    <span>15:05 札幌 (TI) <i class="fa-solid fa-arrow-right mx-1"></i> 18:15 台北 (T2)</span>
+                                    <span class="font-mono font-bold">CI 131</span>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-dashed border-journal-line/50 pt-3 text-xs text-gray-600">
+                                <p class="font-bold text-journal-ink mb-1"><i class="fa-solid fa-money-check-dollar mr-1"></i> 機票費用 (中華航空)：</p>
+                                <ul class="space-y-1 pl-1">
+                                    <li><span class="inline-block w-10 font-medium">大人：</span>每人 35,000 哩 + NT$ 2,320</li>
+                                    <li><span class="inline-block w-10 font-medium">小孩：</span>每人 NT$ 17,015</li>
+                                    <li class="mt-1 text-[10px] text-gray-400">* 行李額度：每人 2PC (計件制)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rental Car Info -->
+                    <div class="journal-card p-6">
+                        <h3 class="font-bold text-journal-ink mb-4 flex items-center text-lg">
+                            <i class="fa-solid fa-car text-journal-accent mr-2"></i> 租車資訊
+                        </h3>
+                        <div class="space-y-3 text-sm text-gray-600">
+                            <p><strong>人數：</strong> 4大4小 (共8人)</p>
+                            <p class="text-[11px] text-journal-accent mt-1 leading-relaxed bg-journal-bg p-2 rounded border border-journal-line/50">
+                                <i class="fa-solid fa-lightbulb mr-1"></i> 提醒：建議租用兩台一般房車/SUV，或租用具備足夠行李空間的大型 8-10 人座廂型車 (需特殊駕照確認)。
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            `;
+            container.innerHTML = html;
+        }
+
+        // Start
+        init();
+        switchTab('plan');
+
+        function openMap(query) {
+            window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`, '_blank');
+        }
+        function toggleCheck(item) {
+            STATE.checklist[item] = !STATE.checklist[item];
+            localStorage.setItem('hokkaido_check_26', JSON.stringify(STATE.checklist));
+            renderLists(document.getElementById('app-container'));
+        }
+        function saveMemo(val) {
+            STATE.memo = val;
+            localStorage.setItem('hokkaido_memo_26', val);
+            updateMemoLinks(val);
+        }
+        function updateMemoLinks(text) {
+            const container = document.getElementById('memo-links');
+            if(!container) return;
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            const matches = text.match(urlRegex);
+            if(matches) {
+                container.innerHTML = matches.map(url => `
+                    <a href="${url}" target="_blank" class="inline-flex items-center px-2 py-1 bg-white border border-journal-line rounded text-[10px] text-journal-blue truncate max-w-[150px]">
+                        <i class="fa-solid fa-link mr-1"></i> 連結
+                    </a>
+                `).join('');
+            } else { container.innerHTML = ''; }
+        }
+
     </script>
 </body>
 </html>
