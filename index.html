@@ -235,7 +235,7 @@
                 mapFocus: "Takino Suzuran Hillside Park",
                 events: [
                     { time: "09:30", title: "瀧野鈴蘭丘陵公園", desc: "國營公園，讓孩子盡情挑戰巨型彈跳床、超長溜滑梯與森林迷宮！", icon: "fa-tree", link: "Takino Suzuran Hillside Park", highlight: true },
-                    { time: "14:00", title: "三井 Outlet Park 北廣島", desc: "運動品牌齊全，尋找 US10 號 Nike 球鞋，或是 HOKA、On 等熱門跑鞋", icon: "fa-bag-shopping", link: "Mitsui Outlet Park Sapporo Kitahiroshima" },
+                    { time: "14:00", title: "三井 Outlet Park 北廣島", desc: "運動品牌齊全，尋找 US 9 號 Nike 球鞋，或是 HOKA、On 等熱門跑鞋", icon: "fa-bag-shopping", link: "Mitsui Outlet Park Sapporo Kitahiroshima" },
                     { time: "晚上", title: "返回飯店 / 晚餐", desc: "回札幌市區享用晚餐", icon: "fa-utensils" }
                 ]
             },
@@ -421,7 +421,7 @@
                 brand: "三井 Outlet Park 札幌北廣島",
                 icon: "fa-bag-shopping",
                 stores: [
-                    { area: "北廣島", name: "北海道最大規模 Outlet", desc: "室內逛街舒適。想找 US 10 號 Nike 球鞋、HOKA、On 跑鞋這裡款式豐富。", link: "Mitsui Outlet Park Sapporo Kitahiroshima" }
+                    { area: "北廣島", name: "北海道最大規模 Outlet", desc: "室內逛街舒適。想找 US 9 號 Nike 球鞋、HOKA、On 跑鞋這裡款式豐富。", link: "Mitsui Outlet Park Sapporo Kitahiroshima" }
                 ]
             },
             {
@@ -443,6 +443,44 @@
 
         // --- Chain Restaurant Data ---
         const chainRestData = [
+            {
+                brand: "成吉思汗烤肉 達摩 (Daruma)",
+                icon: "fa-fire",
+                stores: [
+                    { area: "札幌薄野", name: "達摩 本店", desc: "最具歷史感的創始店，座位少排隊久。", link: "Jingisukan Daruma Main Shop" },
+                    { area: "札幌薄野", name: "達摩 4.4店 / 二階亭", desc: "4.4店有一樓和二樓(二階亭)，二階亭排煙設備較佳。", link: "Jingisukan Daruma 4.4" },
+                    { area: "札幌薄野", name: "達摩 5.5店", desc: "店面較大且排煙系統最好，設有室內等候區，吃完較不會滿身烤肉味。", link: "Jingisukan Daruma 5.5" },
+                    { area: "札幌薄野", name: "達摩 6.4店", desc: "近薄野站，深受當地人與觀光客喜愛。", link: "Jingisukan Daruma 6.4" },
+                    { area: "札幌薄野", name: "達摩 7.4店", desc: "較新的分店，用餐環境明亮舒適。", link: "Jingisukan Daruma 7.4" }
+                ]
+            },
+            {
+                brand: "必吃拉麵 (Ramen)",
+                icon: "fa-bowl-rice",
+                stores: [
+                    { area: "札幌薄野", name: "らーめん信玄 (信玄拉麵) 南6条店", desc: "在地人也瘋狂排隊的濃郁信州味噌拉麵，炒飯也是隱藏版必點。", link: "Ramen Shingen Minami-6jo" },
+                    { area: "札幌薄野", name: "えびそば一幻 (一幻拉麵) 總本店", desc: "超濃郁甜蝦湯頭，建議點「鮮蝦鹽味」，吃完麵可加點白飯變蝦湯雜炊。", link: "Ebisoba Ichigen Main Shop" },
+                    { area: "札幌美園", name: "麵屋 彩未 (Saimi)", desc: "北海道 Tabelog 長年第一名的傳奇味噌拉麵，帶有生薑香氣，清爽不膩口。", link: "Menya Saimi" },
+                    { area: "新千歲機場", name: "北海道拉麵道場 (國內線3F)", desc: "聚集了十幾家北海道頂級拉麵店 (包含一幻、雪風等)，回程提早來機場必吃！", link: "Hokkaido Ramen Dojo" }
+                ]
+            },
+            {
+                brand: "迴轉壽司 Toriton (トリトン)",
+                icon: "fa-fish",
+                stores: [
+                    { area: "札幌圓山", name: "圓山店", desc: "近北海道神宮與圓山動物園。排隊人潮極多，建議避開用餐尖峰。", link: "Kaitenzushi Toriton Maruyama" },
+                    { area: "札幌豐平", name: "豐平店", desc: "市中心相對方便的分店之一。", link: "Kaitenzushi Toriton Toyohira" },
+                    { area: "札幌平岸", name: "平岸店", desc: "深受當地人喜愛的市區分店。", link: "Kaitenzushi Toriton Hiragishi" },
+                    { area: "札幌清田", name: "清田店", desc: "位於前往北廣島三井 Outlet 的路上，非常適合自駕順路吃。", link: "Kaitenzushi Toriton Kiyota" },
+                    { area: "札幌光星", name: "光星店", desc: "位於札幌東區，腹地廣大停車位多。", link: "Kaitenzushi Toriton Kosei" },
+                    { area: "札幌伏古", name: "伏古店", desc: "東區另一家分店，自駕方便。", link: "Kaitenzushi Toriton Fushiko" },
+                    { area: "札幌厚別", name: "厚別店", desc: "近新札幌站。", link: "Kaitenzushi Toriton Atsubetsu" },
+                    { area: "札幌榮町", name: "榮町店", desc: "札幌北區近郊分店。", link: "Kaitenzushi Toriton Sakaemachi" },
+                    { area: "札幌北區", name: "新琴似店", desc: "札幌北區分店。", link: "Kaitenzushi Toriton Shinkotoni" },
+                    { area: "惠庭", name: "惠庭店", desc: "位於新千歲機場與札幌之間，自駕往返機場時非常順路。", link: "Kaitenzushi Toriton Eniwa" },
+                    { area: "江別", name: "江別店", desc: "若有往返富良野等道央地區，可在此中繼。", link: "Kaitenzushi Toriton Ebetsu" }
+                ]
+            },
             {
                 brand: "湯咖哩 (Soup Curry)",
                 icon: "fa-bowl-rice",
@@ -467,14 +505,6 @@
             {
                 area: "札幌 & 小樽",
                 spots: [
-                    { 
-                        name: "成吉思汗烤肉 (達摩)", 
-                        type: "烤羊肉", 
-                        icon: "fa-fire", 
-                        desc: "札幌靈魂美食，沒有羊騷味，配啤酒絕讚！", 
-                        link: "Jingisukan Daruma 6.4",
-                        price: "¥2,000 ~ ¥4,000"
-                    },
                     { 
                         name: "三角市場 (小樽)", 
                         type: "海鮮丼", 
@@ -599,7 +629,7 @@
         ];
 
         const shoppingListData = [
-            "US 10號 Nike / HOKA 跑鞋", "六花亭 奶油夾心餅乾", "LeTAO 雙層起司蛋糕", "白色戀人 巧克力", "薯條三兄弟", "日本常備藥妝"
+            "US 9號 Nike / HOKA 跑鞋", "六花亭 奶油夾心餅乾", "LeTAO 雙層起司蛋糕", "白色戀人 巧克力", "薯條三兄弟", "日本常備藥妝"
         ];
 
         // --- State Management ---
