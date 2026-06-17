@@ -873,27 +873,79 @@
                         </div>
                     </div>
 
+                    <!-- Rental Car Info: Toyota -->
+                    <div class="journal-card p-6">
+                        <h3 class="font-bold text-journal-ink mb-4 flex items-center text-lg"><i class="fa-solid fa-car text-journal-accent mr-2"></i> 租車資訊</h3>
+                        
+                        <div class="relative bg-white rounded-xl shadow-sm overflow-hidden border border-journal-line mt-2">
+                            <div class="ticket-notch ticket-notch-left"></div><div class="ticket-notch ticket-notch-right"></div>
+                            <div class="bg-journal-brown/10 p-3 border-b border-dashed border-journal-brown/30 flex justify-between items-center">
+                                <span class="text-xs font-bold text-journal-brown uppercase tracking-wider">TOYOTA Rent a Car</span>
+                                <span class="text-[10px] bg-journal-brown text-white px-2 py-0.5 rounded font-bold">已結清 (WEB)</span>
+                            </div>
+                            <div class="p-5 pt-6">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h4 class="font-bold text-journal-ink text-lg">札幌站前店</h4>
+                                        <p class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-phone mr-1"></i>011-281-0100</p>
+                                    </div>
+                                    <button onclick="openMap('トヨタレンタカー 札幌駅前店 札幌市中央区北5条東1丁目2-4')" class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-journal-brown hover:text-journal-accent transition">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </button>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3 mb-4">
+                                    <div class="bg-gray-50 p-2.5 rounded border border-journal-line/50">
+                                        <span class="block text-[9px] text-gray-400 uppercase tracking-wide">取車 (出發)</span>
+                                        <span class="font-mono font-bold text-journal-ink text-sm">08/25 (二)</span>
+                                        <span class="block text-[10px] text-journal-accent font-bold mt-0.5">08:30</span>
+                                    </div>
+                                    <div class="bg-gray-50 p-2.5 rounded border border-journal-line/50">
+                                        <span class="block text-[9px] text-gray-400 uppercase tracking-wide">還車 (返却)</span>
+                                        <span class="font-mono font-bold text-journal-ink text-sm">08/27 (四)</span>
+                                        <span class="block text-[10px] text-journal-accent font-bold mt-0.5">20:00</span>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2 text-xs text-gray-600 mb-4 pb-4 border-b border-dashed border-journal-line/50">
+                                    <div class="flex justify-between"><span class="text-gray-400 w-16">車型：</span><span class="font-bold text-journal-ink">W3 等級 ALPHARD Hybrid</span></div>
+                                    <div class="flex justify-between"><span class="text-gray-400 w-16">人數：</span><span>4大4小 (共8人)</span></div>
+                                    <div class="flex justify-between"><span class="text-gray-400 w-16">配件：</span><span>ETC卡、成長型安全座椅 x1</span></div>
+                                    <div class="flex justify-between"><span class="text-gray-400 w-16">保險：</span><span>免責補償 + 安心W方案 (NOC免除)</span></div>
+                                </div>
+
+                                <div class="flex justify-between items-end">
+                                    <span class="font-mono text-[10px] text-gray-400">單號: 99974606000<br>WeiTing Chen</span>
+                                    <div class="text-right">
+                                        <span class="text-[9px] text-gray-400 block">總金額 (已結清)</span>
+                                        <span class="text-xl font-bold text-journal-ink font-mono">JPY 108,190</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <p class="text-[11px] text-journal-accent mt-2 leading-relaxed bg-journal-bg p-3 rounded-lg border border-journal-line shadow-sm">
+                                <i class="fa-solid fa-lightbulb mr-1"></i> <span class="font-bold">提醒：</span>請記得攜帶<b>台灣駕照正本</b>與<b>日文譯本</b>。這段期間 (8/25-8/27) 將自駕前往美瑛、洞爺湖與登別，路程較長，請駕駛注意休息。
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- Flight Info -->
                     <div class="journal-card p-6">
                         <h3 class="font-bold text-journal-ink mb-4 flex items-center text-lg"><i class="fa-solid fa-plane text-journal-accent mr-2"></i> 航班行程</h3>
                         <div class="space-y-4">
                             <div class="bg-journal-bg rounded-lg p-3 border border-journal-line/50"><div class="flex justify-between items-center mb-1"><span class="font-bold text-journal-ink text-sm">08/19 (三)</span><span class="text-xs text-white bg-journal-blue px-2 py-0.5 rounded-full">去程</span></div><div class="flex justify-between text-xs text-gray-500"><span>08:35 台北 (T2) <i class="fa-solid fa-arrow-right mx-1"></i> 13:35 札幌 (TI)</span><span class="font-mono font-bold">CI 130</span></div></div>
                             <div class="bg-journal-bg rounded-lg p-3 border border-journal-line/50"><div class="flex justify-between items-center mb-1"><span class="font-bold text-journal-ink text-sm">08/28 (五)</span><span class="text-xs text-white bg-journal-accent px-2 py-0.5 rounded-full">回程</span></div><div class="flex justify-between text-xs text-gray-500"><span>15:05 札幌 (TI) <i class="fa-solid fa-arrow-right mx-1"></i> 18:15 台北 (T2)</span><span class="font-mono font-bold">CI 131</span></div></div>
-                            <div class="border-t border-dashed border-journal-line/50 pt-3 text-xs text-gray-600"><p class="font-bold text-journal-ink mb-1"><i class="fa-solid fa-money-check-dollar mr-1"></i> 機票費用 (中華航空)：</p><ul class="space-y-1 pl-1"><li><span class="inline-block w-10 font-medium">大人：</span>每人 35,000 哩 + NT$ 2,320</li><li><span class="inline-block w-10 font-medium">小孩：</span>每人 NT$ 17,015</li><li class="mt-1 text-[10px] text-gray-400">* 行李額度：每人 2PC (計件制)</li></ul></div>
+                            <div class="border-t border-dashed border-journal-line/50 pt-3 text-xs text-gray-600"><p class="font-bold text-journal-ink mb-1"><i class="fa-solid fa-money-check-dollar mr-1"></i> 機票費用 (自家 2大2小)：</p><ul class="space-y-1 pl-1"><li><span class="inline-block w-10 font-medium">大人：</span>每人 35,000 哩 + NT$ 2,320</li><li><span class="inline-block w-10 font-medium">小孩：</span>每人 NT$ 17,015</li><li class="mt-1 text-[10px] text-gray-400">* 行李額度：每人 2PC (計件制)</li></ul></div>
                         </div>
-                    </div>
-
-                    <!-- Rental Car Info -->
-                    <div class="journal-card p-6">
-                        <h3 class="font-bold text-journal-ink mb-4 flex items-center text-lg"><i class="fa-solid fa-car text-journal-accent mr-2"></i> 租車資訊</h3>
-                        <div class="space-y-3 text-sm text-gray-600"><p><strong>人數：</strong> 4大4小 (共8人)</p><p class="text-[11px] text-journal-accent mt-1 leading-relaxed bg-journal-bg p-2 rounded border border-journal-line/50"><i class="fa-solid fa-lightbulb mr-1"></i> 提醒：建議租用兩台一般房車/SUV，或租用具備足夠行李空間的大型 8-10 人座廂型車。</p></div>
                     </div>
                 </div>
             `;
             container.innerHTML = html;
         }
 
-        // Start
+        // --- Start Application ---
         init(); switchTab('plan');
 
         function openMap(query) { window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`, '_blank'); }
