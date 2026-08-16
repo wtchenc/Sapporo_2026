@@ -330,10 +330,19 @@
                 ]
             },
             {
+                brand: "大型折扣與電器", icon: "fa-bolt",
+                stores: [
+                    { area: "札幌站", name: "Bic Camera 札幌店", desc: "買電器、玩具、美容儀器必去！(位於東急百貨內)，記得下載免稅折價券。", link: "BicCamera Sapporo" },
+                    { area: "狸小路", name: "Bic Camera Select 札幌狸小路店", desc: "主打觀光客熱門家電、藥妝與伴手禮的精華選品店，逛狸小路時順便補貨！", link: "BicCamera Select Sapporo Tanukikoji" },
+                    { area: "狸小路", name: "MEGA唐吉訶德 狸小路本店", desc: "24小時營業的深夜血拼聖地！零食、藥妝、伴手禮一次買齊。", link: "MEGA Don Quijote Sapporo Tanukikoji" },
+                    { area: "薄野", name: "唐吉訶德 薄野店", desc: "位於薄野鬧區，吃完拉麵或成吉思汗烤肉後，順便血拚補貨的好去處。", link: "Don Quijote Susukino" }
+                ]
+            },
+            {
                 brand: "大通 / 狸小路商圈", icon: "fa-store",
                 stores: [
-                    { area: "札幌", name: "狸小路商店街", desc: "採買聖地，有遮雨棚。藥妝伴手禮一次買齊。", link: "Tanukikoji Shopping Street" },
-                    { area: "札幌", name: "MEGA唐吉訶德", desc: "24小時營業，最後補貨好去處。", link: "MEGA Don Quijote Sapporo Tanukikoji" }
+                    { area: "札幌", name: "狸小路商店街", desc: "採買聖地，有遮雨棚。藥妝與伴手禮比價一級戰區。", link: "Tanukikoji Shopping Street" },
+                    { area: "札幌大通", name: "地下街 Pole / Aurora Town", desc: "連通札幌站到薄野，天氣不佳或太冷時的最佳逛街路線。", link: "Sapporo Underground Pedestrian Space" }
                 ]
             },
             {
@@ -362,7 +371,7 @@
                 brand: "成吉思汗烤肉 達摩", icon: "fa-fire",
                 stores: [
                     { area: "札幌薄野", name: "達摩 4.4店 / 二階亭", desc: "有一樓和二樓，二階亭排煙設備較佳。", link: "Jingisukan Daruma 4.4" },
-                    { area: "札幌薄野", name: "達摩 5.5店", desc: "排煙最好，設有室內等候區。", link: "Jingisukan Daruma 5.5" },
+                    { area: "札幌薄野", name: "達摩 5.5店", desc: "排煙最好，設Clean室內等候區。", link: "Jingisukan Daruma 5.5" },
                     { area: "札幌薄野", name: "達摩 本店", desc: "最具歷史感的創始店，座位少排隊久。", link: "Jingisukan Daruma Main Shop" }
                 ]
             },
@@ -400,7 +409,6 @@
             }
         ];
 
-        // --- STREAMING_CHUNK:Initializing helper functions and logic... ---
         // --- Taxi Logic ---
         const taxiRates = { sapporo: { base: 670, baseKm: 1.28, unitPrice: 80, unitKm: 0.239 } };
         const commonRoutes = {
@@ -463,7 +471,6 @@
             expanded: {} 
         };
 
-        // --- STREAMING_CHUNK:Defining render methods for UI views... ---
         // --- Render Functions ---
         function init() {
             render();
@@ -560,7 +567,6 @@
             }, 100);
         }
 
-        // --- STREAMING_CHUNK:Defining specific UI view behaviors... ---
         function scrollToDay(idx) {
             isNavigating = true; const target = document.getElementById(`day-${idx}`);
             if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); updateActiveNav(idx); setTimeout(() => { isNavigating = false; }, 800); }
@@ -700,7 +706,6 @@
             container.innerHTML = html; updateMemoLinks(STATE.memo);
         }
 
-        // --- STREAMING_CHUNK:Rendering Info section and car rental cards... ---
         // --- Render: INFO ---
         function renderInfo(container) {
             let html = `
@@ -842,7 +847,6 @@
             container.innerHTML = html;
         }
 
-        // --- STREAMING_CHUNK:Finalizing application startup... ---
         // Start
         init(); switchTab('plan');
 
