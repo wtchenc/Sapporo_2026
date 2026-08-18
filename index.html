@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 北海道家族旅行手帳</title>
     
-    <!-- Google Fonts: Zen Maru Gothic & Noto Sans TC -->
+    <!-- Google Fonts: Zen Maru Gothic (圓體) & Noto Sans TC -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -125,7 +125,7 @@
             <button onclick="switchTab('info')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="info">
                 <i class="fa-solid fa-file-invoice text-base"></i><span class="text-[9px] font-medium">憑證</span>
             </button>
-            <button onclick="switchTab('traffic')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="traffic">
+            <button onclick="switchTab('transport')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="transport">
                 <i class="fa-solid fa-train-subway text-base"></i><span class="text-[9px] font-medium">交通</span>
             </button>
             <button onclick="switchTab('lists')" class="nav-btn flex-1 py-2 rounded-xl flex flex-col items-center justify-center space-y-0.5 text-journal-brown transition-colors hover:bg-journal-bg" data-target="lists">
@@ -142,22 +142,21 @@
                 route: "https://www.google.com/maps/dir/New+Chitose+Airport/Ibis+Styles+Sapporo", mapFocus: "Ibis Styles Sapporo",
                 events: [
                     { time: "08:35", title: "桃園起飛 CI130", desc: "TPE (T2) -> CTS (TI)，13:35 抵達", icon: "fa-plane-departure", highlight: true },
-                    { time: "14:30", title: "機場前往札幌市區 (交通)", desc: "🚌 帶小孩首選：「機場巴士(往札幌都心)」於「中島公園」站下車(約80分，1,300圓)，步行2分即達飯店，免扛行李轉車！<br>🚄 備案：「JR快速Airport」至札幌站，轉地鐵南北線至中島公園站(約60分)。", icon: "fa-bus", alert: "important" },
-                    { time: "16:00", title: "入住宜必思酒店", desc: "Ibis Styles Sapporo 辦理 Check-in", icon: "fa-hotel" },
-                    { time: "17:30", title: "JINS 眼鏡 (札幌車站)", desc: "前往 Stellar Place Center 4F 配眼鏡 (免稅)，趁等待時間吃晚餐。", icon: "fa-glasses", link: "JINS 札幌ステラプレイス店", highlight: true },
+                    { time: "14:30", title: "搭乘機場聯絡巴士", desc: "【重要】請搭乘「札幌都心（直行便）」。這班車不經福住，下高速公路後終點站直達中島公園（約需80分），大人¥1300/小孩¥650。", icon: "fa-bus", alert: "important" },
+                    { time: "16:00", title: "入住宜必思酒店", desc: "在「中島公園」巴士站下車，走路1分鐘即可到 Ibis Styles Sapporo 辦理 Check-in", icon: "fa-hotel" },
+                    { time: "17:30", title: "JINS 眼鏡 (札幌車站)", desc: "搭地鐵南北線至札幌站。前往 Stellar Place Center 4F 配眼鏡 (免稅)，趁等待時間吃晚餐。", icon: "fa-glasses", link: "JINS 札幌ステラプレイス店", highlight: true },
                     { time: "18:30", title: "車站周邊晚餐", desc: "吃碗熱騰騰的拉麵或湯咖哩，吃飽拿眼鏡回飯店休息。", icon: "fa-bowl-rice" }
                 ]
             },
             {
                 date: "08/20 (四)", title: "Day 2: 浪漫小樽全日遊", area: "自家 2大2小",
-                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Sapporo+Suwa+Shrine/Otaru+Music+Box+Museum/Sankaku+Market/Tenguyama+Ropeway/Otaru+Canal", mapFocus: "Otaru Canal",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Sapporo+Suwa+Shrine/Marusan+Tei/Otaru+Music+Box+Museum/Tenguyama+Ropeway/Otaru+Canal", mapFocus: "Otaru Canal",
                 events: [
                     { time: "09:00", title: "Times 取車與出發", desc: "於飯店旁的 Times 札幌中島公園店取車出發。", icon: "fa-car", alert: "important" },
                     { time: "09:15", title: "札幌諏訪神社", desc: "順路往北，社務所剛開。看絕美花手水、透明和傘，買超美蕾絲御守。", icon: "fa-torii-gate", link: "Sapporo Suwa Shrine", highlight: true },
-                    { time: "備案", title: "三上商店 早午餐 (場外市場)", desc: "若不去小樽三角市場，出發前可先至批發商直營的「まるさん亭」吃隱藏版極鮮海鮮丼！", icon: "fa-fish", link: "Marusantei Main Store" },
-                    { time: "10:45", title: "童話十字路口 ＆ 堺町通", desc: "導航停附近計時停車場。買好的伴手禮直接提回車上放！", icon: "fa-music", link: "Otaru Music Box Museum" },
-                    { time: "13:00", title: "午餐：三角市場海鮮丼", desc: "停小樽車站周邊。挑戰澎湃海鮮丼或現挑活體帝王蟹！", icon: "fa-fish", link: "Sankaku Market", highlight: true },
-                    { time: "14:45", title: "天狗山纜車 ＆ 滑草", desc: "直接開車至山麓站(免費停車)。搭纜車看絕景、小孩體驗滑草。", icon: "fa-mountain", link: "Tenguyama Ropeway" },
+                    { time: "10:15", title: "早午餐：三井商店(場外市場)", desc: "備案！水產批發直營「三上商店(まるさん亭)」吃極鮮海鮮丼，不用去小樽人擠人。", icon: "fa-fish", link: "まるさん亭" },
+                    { time: "11:30", title: "童話十字路口 ＆ 堺町通", desc: "開車抵達小樽。導航停周邊計時停車場(勿開進堺町通)。買好的伴手禮直接提回車上放！", icon: "fa-music", link: "Otaru Music Box Museum" },
+                    { time: "14:45", title: "天狗山纜車 ＆ 滑草", desc: "開車至山麓站(免費大停車場超好停)。搭纜車看絕景、小孩體驗滑草。", icon: "fa-mountain", link: "Tenguyama Ropeway" },
                     { time: "17:30", title: "小樽運河遊船 ＆ 點燈", desc: "把車停回運河區周邊。搭船(約40分)並欣賞魔幻夕陽與夜景。", icon: "fa-ship", link: "Otaru Canal Cruise", highlight: true },
                     { time: "19:30", title: "小樽晚餐時間", desc: "出拔小路吃輕食，或找間拉麵、壽司店悠哉吃晚餐。", icon: "fa-utensils" },
                     { time: "20:30", title: "開車返回札幌市區", desc: "走高速公路回札幌，車停中島公園宜必思特約停車場 (過夜 1,500 日圓)。", icon: "fa-car" }
@@ -200,7 +199,7 @@
                     { time: "09:30", title: "圓山動物園", desc: "北極熊、企鵝等北國動物 (地鐵250円)", icon: "fa-paw", highlight: true },
                     { time: "13:00", title: "圓內點心 & 神宮", desc: "園區墊胃後，步行10分至北海道神宮參拜", icon: "fa-torii-gate" },
                     { time: "14:00", title: "成吉思汗烤肉", desc: "達摩 4.4店 (走路+地鐵約30分)", icon: "fa-fire", highlight: true },
-                    { time: "16:00", title: "狸小路 / 車站百貨", desc: "採買伴手禮與藥妝", icon: "fa-store", link: "Tanukikoji Shopping Street" },
+                    { time: "16:00", title: "狸小路商圈", desc: "採買伴手禮與藥妝。可逛唐吉訶德、Bic Camera或Mont-bell", icon: "fa-store", link: "Tanukikoji Shopping Street" },
                     { time: "備案", title: "AOAO 水族館", desc: "若遇雨天或想在室內休息，可改去狸小路內的新開幕水族館看企鵝", icon: "fa-fish-fins", link: "AOAO SAPPORO" },
                     { time: "18:00", title: "晚餐 (各家帶開)", desc: "自由活動", icon: "fa-utensils" }
                 ]
@@ -263,8 +262,8 @@
                 route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/New+Chitose+Airport", mapFocus: "New Chitose Airport",
                 events: [
                     { time: "早上", title: "👋 朋友賦歸 / 自家行程", desc: "與朋友道別，恢復為自家 2大2小 的溫馨行程。", icon: "fa-users-slash", alert: "important" },
-                    { time: "09:30", title: "退房前往機場", desc: "國內線極好逛，建議提早出發 (車程約 1 小時)", icon: "fa-taxi", highlight: true },
-                    { time: "10:30", title: "新千歲國內線血拼", desc: "買齊六花亭、LeTAO、逛哆啦A夢天空公園", icon: "fa-bag-shopping" },
+                    { time: "09:30", title: "退房前往機場", desc: "搭乘機場聯絡巴士直達機場 (車程約 70 分鐘)", icon: "fa-bus", highlight: true },
+                    { time: "10:45", title: "新千歲國內線血拼", desc: "買齊六花亭、LeTAO、逛哆啦A夢天空公園", icon: "fa-bag-shopping" },
                     { time: "12:00", title: "北海道拉麵道場", desc: "機場內吃一幻拉麵或雪風，做完美收尾", icon: "fa-bowl-rice" },
                     { time: "15:05", title: "起飛 CI 131", desc: "新千歲 CTS -> 台北 TPE (預計 18:15 抵達)", icon: "fa-plane-departure", highlight: true }
                 ]
@@ -328,33 +327,27 @@
                 ]
             },
             {
+                brand: "大型折扣與電器", icon: "fa-bolt",
+                stores: [
+                    { area: "狸小路", name: "MEGA唐吉訶德 狸小路本店", desc: "24小時營業，藥妝零食雜貨應有盡有，最後補貨好去處。", link: "MEGA Don Quijote Sapporo Tanukikoji" },
+                    { area: "札幌薄野", name: "MEGA唐吉訶德 薄野店", desc: "位於薄野十字路口旁，吃完烤肉或拉麵順路逛超方便。", link: "MEGA Don Quijote Susukino" },
+                    { area: "狸小路", name: "Bic Camera Select 札幌狸小路店", desc: "狸小路4丁目內，精選熱門免稅電器、美容儀器與雜貨。", link: "Bic Camera Select Sapporo Tanukikoji" }
+                ]
+            },
+            {
                 brand: "戶外與運動品牌", icon: "fa-campground",
                 stores: [
-                    { area: "札幌站前", name: "Mont-bell 札幌赤磚露臺店", desc: "Akarenga Terrace 內。交通方便，退稅迅速。", link: "mont-bell Sapporo Akarenga Terrace" },
-                    { area: "札幌東區", name: "Mont-bell 札幌工廠店", desc: "北海道最大旗艦店！商品最齊全，兩層樓超好逛。", link: "mont-bell Sapporo Factory" }
-                ]
-            },
-            {
-                brand: "大通 / 狸小路商圈", icon: "fa-store",
-                stores: [
-                    { area: "札幌", name: "狸小路商店街", desc: "採買聖地，有遮雨棚。藥妝伴手禮一次買齊。", link: "Tanukikoji Shopping Street" }
-                ]
-            },
-            {
-                brand: "大型折扣與電器", icon: "fa-tags",
-                stores: [
-                    { area: "狸小路", name: "Bic Camera Select", desc: "札幌狸小路店。精選觀光客熱門家電與雜貨，買藥妝電器很方便。", link: "Bic Camera Select Sapporo Tanukikoji" },
-                    { area: "狸小路", name: "MEGA唐吉訶德", desc: "狸小路本店。24小時營業，品項最齊全。", link: "MEGA Don Quijote Sapporo Tanukikoji" },
-                    { area: "薄野", name: "MEGA唐吉訶德 薄野店", desc: "吃完宵夜順便逛！營業至深夜，採買補貨極方便。", link: "MEGA Don Quijote Susukino" }
+                    { area: "札幌市區", name: "Mont-bell 札幌工廠店 (Sapporo Factory)", desc: "北海道最大的旗艦店，兩層樓款式最齊全！(推薦來這間)", link: "mont-bell 札幌ファクトリー店" },
+                    { area: "札幌站", name: "Mont-bell 札幌赤磚露臺店", desc: "離札幌車站較近，交通方便。地下連通道可達。", link: "mont-bell 札幌赤れんがテラス店" }
                 ]
             },
             {
                 brand: "JINS 眼鏡", icon: "fa-glasses",
                 stores: [
-                    { area: "札幌站", name: "札幌 Stellar Place 店", desc: "Center 4F。10:00–20:00，提供免稅 (Tax Free) 服務。", link: "JINS 札幌ステラプレイス店" },
-                    { area: "札幌大通", name: "札幌地下街 Pole Town 店", desc: "大通地下街，不畏風雨。10:00–20:00，提供免稅服務。", link: "JINS 札幌地下街ポールタウン店" },
+                    { area: "札幌站", name: "札幌 Stellar Place 店", desc: "Center 4F。10:00–20:00，提供免稅服務。", link: "JINS 札幌ステラプレイス店" },
+                    { area: "札幌大通", name: "札幌地下街 Pole Town 店", desc: "大通地下街，10:00–20:00，提供免稅服務。", link: "JINS 札幌地下街ポールタウン店" },
                     { area: "札幌大通", name: "札幌 PARCO 店", desc: "札幌 PARCO 6F。10:00–20:00，提供免稅服務。", link: "JINS 札幌パルコ店" },
-                    { area: "北廣島", name: "三井 Outlet Park 札幌北廣島店", desc: "買衣服順便配眼鏡！10:00–20:00，提供免稅服務。", link: "JINS 三井アウトレットパーク 札幌北広島店" }
+                    { area: "北廣島", name: "三井 Outlet 札幌北廣島店", desc: "買衣服順便配眼鏡！10:00–20:00，免稅。", link: "JINS 三井アウトレットパーク 札幌北広島店" }
                 ]
             }
         ];
@@ -400,8 +393,7 @@
             {
                 area: "札幌海鮮 (市場)",
                 spots: [
-                    { name: "三上商店 (まるさん亭)", type: "海鮮丼", icon: "fa-bowl-rice", desc: "位於場外市場。水產批發商直營的隱藏版在地食堂，海鮮鮮度極高！", link: "Marusantei Main Store", price: "¥2,000 ~ ¥4,000" },
-                    { name: "二条市場", type: "海鮮丼/烤物", icon: "fa-fish", desc: "市區中心，走路可達。推薦當早午餐，吃烤扇貝、海膽丼。", link: "Nijo Market", price: "¥2,000 ~ ¥5,000" }
+                    { name: "三上商店 (まるさん亭)", type: "海鮮丼/定食", icon: "fa-fish", desc: "場外市場的水產批發商直營店！海鮮鮮度極高，CP值爆表，是去小樽前的絕佳早午餐備案。", link: "まるさん亭", price: "¥2,000 ~ ¥4,000" }
                 ]
             },
             {
@@ -512,7 +504,7 @@
             container.innerHTML = '';
             switch(STATE.tab) {
                 case 'plan': renderPlan(container); break; case 'guide': renderGuide(container); break;
-                case 'shops': renderShops(container); break; case 'traffic': renderTraffic(container); break;
+                case 'shops': renderShops(container); break; case 'transport': renderTransport(container); break;
                 case 'lists': renderLists(container); break; case 'info': renderInfo(container); break;
             }
             window.scrollTo(0,0);
@@ -661,62 +653,62 @@
              html += `</div></div></div>`; container.innerHTML = html;
         }
 
-        // --- STREAMING_CHUNK:Rendering Traffic and taxi calc... ---
-        // --- Render: TRAFFIC ---
-        function renderTraffic(container) {
+        // --- Render: TRANSPORTATION (Replaces Taxi) ---
+        function renderTransport(container) {
             let html = `
                 <div class="fade-in space-y-6 pb-4 pt-4">
                     <div class="text-center mb-6">
-                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-journal-bg border-2 border-dashed border-journal-line mb-3"><i class="fa-solid fa-train-subway text-3xl text-journal-accent"></i></div>
-                        <h2 class="text-xl font-bold text-journal-ink">交通指南與車資</h2>
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-journal-bg border-2 border-dashed border-journal-line mb-3"><i class="fa-solid fa-train-subway text-3xl text-journal-blue"></i></div>
+                        <h2 class="text-xl font-bold text-journal-ink">交通與車資估算</h2>
                     </div>
 
-                    <!-- 大眾運輸清單 -->
-                    <div class="journal-card p-5">
-                        <h3 class="font-bold text-journal-ink mb-4 flex items-center text-lg"><i class="fa-solid fa-ticket text-journal-blue mr-2"></i> 常用交通方式</h3>
+                    <!-- 主要交通方式指南 -->
+                    <div class="journal-card p-5 border-2 border-journal-blue/20 bg-white">
+                        <h3 class="font-bold text-journal-blue text-lg mb-4 flex items-center"><i class="fa-solid fa-map-location-dot mr-2"></i> 大眾運輸指南</h3>
                         <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-bus"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-journal-ink text-sm">機場聯絡巴士 (往札幌都心)</h4>
-                                    <p class="text-xs text-gray-500 mt-1">帶大件行李或兒童推車首選！直達「中島公園」站，下車步行2分即達飯店。車程約80分，單程1,300圓。</p>
+                            <!-- 機場巴士 -->
+                            <div class="border-b border-journal-line/50 pb-4">
+                                <div class="flex items-center mb-2"><i class="fa-solid fa-bus text-journal-accent w-6 text-center"></i><h4 class="font-bold text-journal-ink">機場聯絡巴士 (Airport Bus)</h4></div>
+                                <div class="pl-6 text-sm text-gray-600 space-y-1">
+                                    <p><span class="font-bold text-red-500">【重要】前往中島公園：</span>務必搭乘<span class="font-bold text-journal-ink">「札幌都心（直行便）」</span>，終點站即為中島公園。若搭到一般班次，需在薄野下車步行。</p>
+                                    <p class="text-xs text-gray-400 mt-1">票價：大人 ¥1300 / 兒童 ¥650 (可用西瓜卡)</p>
+                                    <button onclick="window.open('https://www.chuo-bus.co.jp/highway.tw/airport/', '_blank')" class="mt-2 text-xs flex items-center text-journal-blue hover:text-journal-accent transition-colors bg-blue-50 px-2 py-1 rounded border border-blue-100 font-bold"><i class="fa-solid fa-clock mr-1.5"></i> 點此查看官方中文時刻表</button>
                                 </div>
                             </div>
-                            <div class="border-b border-journal-line/30"></div>
-                            <div class="flex items-start">
-                                <div class="w-8 h-8 rounded-full bg-green-50 text-green-600 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-train"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-journal-ink text-sm">JR 快速 Airport</h4>
-                                    <p class="text-xs text-gray-500 mt-1">新千歲機場 ↔ 札幌站最快只需 37 分鐘 (1,150圓)。但抵達札幌站後需轉乘地鐵，扛行李較不便，較適合不帶大行李時搭乘。</p>
+                            <!-- 札幌地鐵 -->
+                            <div class="border-b border-journal-line/50 pb-4">
+                                <div class="flex items-center mb-2"><i class="fa-solid fa-train-subway text-green-600 w-6 text-center"></i><h4 class="font-bold text-journal-ink">札幌市營地下鐵</h4></div>
+                                <div class="pl-6 text-sm text-gray-600 space-y-1">
+                                    <p>共三條線 (南北線/東西線/東豐線)。飯店位於「南北線-中島公園站」。</p>
+                                    <p>若假日搭乘多次，可購買<span class="font-bold text-journal-ink">「地鐵一日券(週末Donica卡)」</span>¥520 超划算。</p>
                                 </div>
                             </div>
-                            <div class="border-b border-journal-line/30"></div>
-                            <div class="flex items-start">
-                                <div class="w-8 h-8 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-subway"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-journal-ink text-sm">札幌市營地下鐵</h4>
-                                    <p class="text-xs text-gray-500 mt-1">市區移動主力。起跳 210 圓，若在週末及假日搭乘，強烈建議購買「DONICA 假日地鐵一日券 (520 圓)」，搭三次就回本！</p>
+                            <!-- 札幌市電 -->
+                            <div class="border-b border-journal-line/50 pb-4">
+                                <div class="flex items-center mb-2"><i class="fa-solid fa-train-tram text-orange-500 w-6 text-center"></i><h4 class="font-bold text-journal-ink">札幌市電 (路面電車)</h4></div>
+                                <div class="pl-6 text-sm text-gray-600 space-y-1">
+                                    <p>前往「藻岩山夜景」時需搭乘。全線單一票價 (大人 ¥200)。</p>
+                                    <p class="text-xs text-gray-400">搭乘方式：後門上車，前門下車刷卡付費。</p>
                                 </div>
                             </div>
-                            <div class="border-b border-journal-line/30"></div>
-                            <div class="flex items-start">
-                                <div class="w-8 h-8 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-train-tram"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-journal-ink text-sm">札幌市電 (路面電車)</h4>
-                                    <p class="text-xs text-gray-500 mt-1">環形行駛，單次車資 200 圓。若要前往「藻岩山纜車」看夜景，搭乘市電至「纜車入口站 (ロープウェイ入口)」最方便。</p>
+                            <!-- JR 北海道 -->
+                            <div>
+                                <div class="flex items-center mb-2"><i class="fa-solid fa-train text-blue-600 w-6 text-center"></i><h4 class="font-bold text-journal-ink">JR 北海道</h4></div>
+                                <div class="pl-6 text-sm text-gray-600 space-y-1">
+                                    <p>機場來回 (快速Airport) 或是前往小樽時搭乘。若有帶大件行李可考慮加購「U-Seat (指定席)」。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 計程車估算 -->
-                    <div class="journal-card p-6 bg-white border border-journal-line shadow-sm relative overflow-hidden">
-                        <h3 class="font-bold text-journal-ink mb-4 flex items-center text-lg"><i class="fa-solid fa-calculator text-journal-accent mr-2"></i> 計程車資估算</h3>
+                    <!-- 計程車資估算 -->
+                    <div class="journal-card p-6 bg-journal-bg/30 border border-journal-line shadow-sm relative overflow-hidden mt-6">
                         <div class="relative z-10">
+                            <h3 class="font-bold text-journal-ink text-lg mb-4 flex items-center"><i class="fa-solid fa-taxi mr-2 text-yellow-500"></i> 計程車資估算</h3>
                             <div class="space-y-5">
                                 <div>
-                                    <label class="text-xs font-bold text-journal-ink block mb-2 flex items-center"><i class="fa-solid fa-map-location-dot mr-1.5 text-journal-brown"></i> 快速路線</label>
-                                    <div class="relative"><select id="taxi-routes" onchange="updateTaxiCalc('sapporo', this.value)" class="w-full text-sm p-3 rounded-xl border border-journal-line bg-gray-50 outline-none appearance-none text-gray-600 font-sans" data-current-region="sapporo"></select><div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400"><i class="fa-solid fa-chevron-down text-xs"></i></div></div>
+                                    <label class="text-xs font-bold text-journal-ink block mb-2 flex items-center"><i class="fa-solid fa-location-dot mr-1.5 text-journal-brown"></i> 快速路線</label>
+                                    <div class="relative"><select id="taxi-routes" onchange="updateTaxiCalc('sapporo', this.value)" class="w-full text-sm p-3 rounded-xl border border-journal-line bg-white outline-none appearance-none text-gray-600 font-sans" data-current-region="sapporo"></select><div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400"><i class="fa-solid fa-chevron-down text-xs"></i></div></div>
                                 </div>
                                 <div>
                                     <div class="flex items-center justify-between mb-2">
@@ -728,8 +720,8 @@
                                     <div class="flex items-center space-x-2"><input type="number" id="taxi-dist" placeholder="0" class="flex-1 p-3 text-lg font-mono border border-journal-line rounded-xl outline-none focus:border-journal-accent bg-white shadow-inner"><button onclick="calculateTaxi()" class="px-6 py-3 bg-journal-ink text-white rounded-xl text-sm font-bold shadow-md active:scale-95 transition hover:bg-journal-brown">計算</button></div>
                                 </div>
                             </div>
-                            <div class="mt-8 relative"><div class="absolute left-0 right-0 top-1/2 border-t-2 border-dashed border-journal-line/30"></div><div class="relative z-10 flex justify-center"><span class="bg-white px-3 text-xs text-journal-brown/60">ESTIMATE</span></div></div>
-                            <div id="taxi-result" class="mt-4 p-5 bg-journal-bg rounded-xl border border-journal-line text-center min-h-[100px] flex flex-col items-center justify-center"><span class="text-sm text-gray-400 mb-1">請選擇路線或輸入距離</span><i class="fa-solid fa-coins text-2xl text-journal-line mt-2"></i></div>
+                            <div class="mt-8 relative"><div class="absolute left-0 right-0 top-1/2 border-t-2 border-dashed border-journal-line/30"></div><div class="relative z-10 flex justify-center"><span class="bg-journal-bg px-3 text-xs text-journal-brown/60">ESTIMATE</span></div></div>
+                            <div id="taxi-result" class="mt-4 p-5 bg-white rounded-xl border border-journal-line text-center min-h-[100px] flex flex-col items-center justify-center shadow-inner"><span class="text-sm text-gray-400 mb-1">請選擇路線或輸入距離</span><i class="fa-solid fa-coins text-2xl text-journal-line mt-2"></i></div>
                         </div>
                     </div>
                 </div>`;
@@ -914,3 +906,6 @@
     </script>
 </body>
 </html>
+
+
+
