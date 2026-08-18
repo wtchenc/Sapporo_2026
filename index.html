@@ -142,7 +142,7 @@
                 route: "https://www.google.com/maps/dir/New+Chitose+Airport/Ibis+Styles+Sapporo", mapFocus: "Ibis Styles Sapporo",
                 events: [
                     { time: "08:35", title: "桃園起飛 CI130", desc: "TPE (T2) -> CTS (TI)，13:35 抵達", icon: "fa-plane-departure", highlight: true },
-                    { time: "14:30", title: "搭乘機場聯絡巴士", desc: "【重要】請搭乘「札幌都心（直行便）」。這班車不經福住，下高速公路後終點站直達中島公園（約需80分），大人¥1300/小孩¥650。", icon: "fa-bus", alert: "important" },
+                    { time: "14:30", title: "搭乘機場聯絡巴士", desc: "【重要】請搭乘「札幌都心（直行便）」。<br><span class=\"font-bold text-journal-accent mt-1 inline-block\"><i class=\"fa-solid fa-star\"></i> 內行撇步：</span>出關後先上2樓，沿連絡通道走10-15分鐘到「國內線航廈1樓 (ANA前22號站牌)」上車，保證有位子！", icon: "fa-bus", alert: "important" },
                     { time: "16:00", title: "入住宜必思酒店", desc: "在「中島公園」巴士站下車，走路1分鐘即可到 Ibis Styles Sapporo 辦理 Check-in", icon: "fa-hotel" },
                     { time: "17:30", title: "JINS 眼鏡 (札幌車站)", desc: "搭地鐵南北線至札幌站。前往 Stellar Place Center 4F 配眼鏡 (免稅)，趁等待時間吃晚餐。", icon: "fa-glasses", link: "JINS 札幌ステラプレイス店", highlight: true },
                     { time: "18:30", title: "車站周邊晚餐", desc: "吃碗熱騰騰的拉麵或湯咖哩，吃飽拿眼鏡回飯店休息。", icon: "fa-bowl-rice" }
@@ -672,7 +672,14 @@
                                 <div class="pl-6 text-sm text-gray-600 space-y-1">
                                     <p><span class="font-bold text-red-500">【重要】前往中島公園：</span>務必搭乘<span class="font-bold text-journal-ink">「札幌都心（直行便）」</span>，終點站即為中島公園。若搭到一般班次，需在薄野下車步行。</p>
                                     <p class="text-xs text-gray-400 mt-1">票價：大人 ¥1300 / 兒童 ¥650 (可用西瓜卡)</p>
-                                    <button onclick="window.open('https://www.chuo-bus.co.jp/highway.tw/airport/', '_blank')" class="mt-2 text-xs flex items-center text-journal-blue hover:text-journal-accent transition-colors bg-blue-50 px-2 py-1 rounded border border-blue-100 font-bold"><i class="fa-solid fa-clock mr-1.5"></i> 點此查看官方中文時刻表</button>
+                                    
+                                    <div class="bg-yellow-50 border border-yellow-200 rounded p-3 mt-2 text-[11px] leading-relaxed shadow-sm">
+                                        <span class="font-bold text-yellow-600 text-sm block mb-1"><i class="fa-solid fa-star"></i> 內行保證有位密技：</span>
+                                        巴士發車順序為：國內線ANA(22號) -> 國內線JAL(14號) -> 國際線(84號)。<br>
+                                        為了避免客滿上不了車，抵達國際線出關後，強烈建議<span class="font-bold text-journal-ink">搭電梯上2樓，沿著連絡通道走（約10-15分鐘）到國內線1樓的「ANA前 22號站牌」</span>排隊上車，這裡是第一站，保證全家都有位子坐！
+                                    </div>
+
+                                    <button onclick="window.open('https://www.chuo-bus.co.jp/highway.tw/airport/', '_blank')" class="mt-2 w-full text-xs flex justify-center items-center text-journal-blue hover:text-journal-accent transition-colors bg-blue-50 px-2 py-2 rounded border border-blue-100 font-bold"><i class="fa-solid fa-clock mr-1.5"></i> 點此查看官方中文時刻表</button>
                                 </div>
                             </div>
                             <!-- 札幌地鐵 -->
@@ -906,6 +913,5 @@
     </script>
 </body>
 </html>
-
 
 
