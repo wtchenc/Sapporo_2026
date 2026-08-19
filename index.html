@@ -164,15 +164,15 @@
             },
             {
                 date: "08/21 (五)", title: "Day 3: 親子放電 ＆ 購物血拚", area: "自家 2大2小",
-                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Takino+Suzuran+Hillside+Park/Mitsui+Outlet+Park+Sapporo+Kitahiroshima/Ibis+Styles+Sapporo", mapFocus: "Takino Suzuran Hillside Park",
+                route: "https://www.google.com/maps/dir/Ibis+Styles+Sapporo/Takino+Suzuran+Hillside+Park/Mitsui+Outlet+Park+Sapporo+Kitahiroshima/Kojima+Bic+Camera+Sapporo+Kiyota/Ibis+Styles+Sapporo", mapFocus: "Mitsui Outlet Park Sapporo Kitahiroshima",
                 events: [
                     { time: "09:00", title: "出發鈴蘭公園", desc: "走市區/郊區一般道路 (車程約 40 分鐘)。", icon: "fa-car" },
                     { time: "09:40", title: "瀧野鈴蘭丘陵公園", desc: "務必導航停「東口停車場」最快。直奔兒童之谷巨型彈跳床！", icon: "fa-tree", link: "Takino Suzuran Hillside Park", highlight: true },
                     { time: "13:00", title: "開車前往三井 Outlet", desc: "車程約 30 分鐘，小孩上車剛好午睡充電。", icon: "fa-road" },
                     { time: "13:30", title: "午餐：Outlet 美食街", desc: "直奔 2 樓超大 Food Court，選擇多且對兒童友善。", icon: "fa-utensils" },
                     { time: "14:30", title: "三井 Outlet 血拚", desc: "免費停車。尋找 US 9 號 Nike/HOKA，戰利品隨時放休旅車上！", icon: "fa-bag-shopping", link: "Mitsui Outlet Park Sapporo Kitahiroshima", highlight: true },
-                    { time: "18:00", title: "滿載而歸返回飯店", desc: "走「道央自動車道」爭取時間。讓家人先在飯店門口下車回房。", icon: "fa-hotel", alert: "important" },
-                    { time: "18:50", title: "開車返回飯店 ＆ 停車", desc: "將車停入中島公園宜必思特約停車場 (過夜 1,500 日圓)。", icon: "fa-square-parking", highlight: true },
+                    { time: "17:30", title: "Kojima x Bic Camera 買電器/卡牌", desc: "【順路神店】回程路上順路停靠「札幌清田店」，附設大停車場。買電器直接丟車上，還可以去玩具區買寶可夢卡包！", icon: "fa-bolt", link: "コジマ×ビックカメラ 札幌清田店", alert: "important" },
+                    { time: "18:50", title: "開車返回飯店 ＆ 停車", desc: "將車停入中島公園宜必思特約停車場 (過夜 1,500 日圓)。", icon: "fa-square-parking" },
                     { time: "19:30", title: "市區慶功晚餐", desc: "全家出發薄野吃拉麵或湯咖哩！", icon: "fa-bowl-rice" }
                 ]
             },
@@ -187,7 +187,7 @@
                     { time: "11:30", title: "札幌啤酒博物館", desc: "搭巴士(240円)。了解啤酒歷史", icon: "fa-beer-mug-empty" },
                     { time: "13:00", title: "中餐", desc: "周邊用餐", icon: "fa-utensils" },
                     { time: "14:30", title: "寶可夢中心", desc: "大丸百貨 8F", icon: "fa-gamepad", highlight: true },
-                    { time: "16:00", title: "札幌車站百貨逛街", desc: "大丸、STELLAR PLACE、APIA、東急", icon: "fa-bag-shopping" },
+                    { time: "16:00", title: "札幌車站百貨逛街", desc: "大丸、STELLAR PLACE、APIA、東急。買肌膚之鑰可在大丸1F！", icon: "fa-bag-shopping" },
                     { time: "18:00", title: "晚餐", desc: "車站周邊或地下街", icon: "fa-utensils" },
                     { time: "19:30", title: "JR塔 T38 展望台", desc: "360度絕美夜景", icon: "fa-moon" }
                 ]
@@ -318,6 +318,22 @@
         // --- Shopping Data ---
         const shoppingData = [
             {
+                brand: "動漫、玩具與卡牌", icon: "fa-gamepad",
+                stores: [
+                    { area: "札幌清田", name: "Kojima x Bic Camera 札幌清田店", desc: "玩具區可買卡包！超大郊區電器行，附設免費大停車場，從三井Outlet回程必逛順路神店。", link: "コジマ×ビックカメラ 札幌清田店" },
+                    { area: "札幌大丸", name: "寶可夢中心 札幌 (大丸 8F)", desc: "北海道最大的寶可夢中心，新品最齊全！", link: "Pokémon Center Sapporo" },
+                    { area: "狸小路", name: "駿河屋 札幌狸小路本店", desc: "位於MEGA唐吉訶德大樓內，日本連鎖動漫卡牌二手店，找特定卡牌必去！", link: "Surugaya Sapporo Tanukikoji" },
+                    { area: "隨處可見", name: "各家便利商店 (7-11, FamilyMart, Lawson)", desc: "自駕路上停靠時，結帳櫃檯旁邊常有掛著卡包，記得隨時問店員尋寶！", link: "" }
+                ]
+            },
+            {
+                brand: "專櫃保養與美妝", icon: "fa-wand-magic-sparkles",
+                stores: [
+                    { area: "札幌站", name: "大丸百貨 1F (含肌膚之鑰等)", desc: "配合 Day 4 行程！去 8F 寶可夢中心前可順便下樓買，滿額可退稅並可能有外國人5%優惠折扣。", link: "Daimaru Sapporo" },
+                    { area: "機場", name: "新千歲機場 國際線免稅店", desc: "配合 Day 10 回程！直接免稅免湊單，且不用提著保養品玩整趟，上飛機前買肌膚之鑰最方便。", link: "New Chitose Airport International Terminal" }
+                ]
+            },
+            {
                 brand: "百貨與商場逛街", icon: "fa-bag-shopping",
                 stores: [
                     { area: "札幌站", name: "大丸百貨 (Daimaru)", desc: "8F 寶可夢中心。B1 美食與伴手禮。", link: "Daimaru Sapporo" },
@@ -329,6 +345,7 @@
             {
                 brand: "大型折扣與電器", icon: "fa-bolt",
                 stores: [
+                    { area: "札幌清田", name: "Kojima x Bic Camera 札幌清田店", desc: "【推薦自駕去】超巨大郊區店，有超大免費停車場，買吹風機等家電直接丟後車廂！", link: "コジマ×ビックカメラ 札幌清田店" },
                     { area: "狸小路", name: "MEGA唐吉訶德 狸小路本店", desc: "24小時營業，藥妝零食雜貨應有盡有，最後補貨好去處。", link: "MEGA Don Quijote Sapporo Tanukikoji" },
                     { area: "札幌薄野", name: "MEGA唐吉訶德 薄野店", desc: "位於薄野十字路口旁，吃完烤肉或拉麵順路逛超方便。", link: "MEGA Don Quijote Susukino" },
                     { area: "狸小路", name: "Bic Camera Select 札幌狸小路店", desc: "狸小路4丁目內，精選熱門免稅電器、美容儀器與雜貨。", link: "Bic Camera Select Sapporo Tanukikoji" }
@@ -462,7 +479,7 @@
             "常備藥品 (腸胃藥、感冒藥、OK繃)", "折疊雨傘/輕便雨衣", "保養品/防曬"
         ];
         const shoppingListData = [
-            "US 9號 Nike / HOKA 跑鞋", "六花亭 奶油夾心餅乾", "LeTAO 雙層起司蛋糕", "白色戀人 巧克力", "日本常備藥妝"
+            "肌膚之鑰 (大丸百貨或機場)", "寶可夢卡包 (Bic Camera或駿河屋)", "US 9號 Nike / HOKA 跑鞋", "六花亭 奶油夾心餅乾", "LeTAO 雙層起司蛋糕", "白色戀人 巧克力", "日本常備藥妝"
         ];
 
         // --- State Management ---
@@ -627,7 +644,7 @@
                  html += `<div class="bg-white rounded-xl border border-journal-line overflow-hidden shadow-sm">
                         <button onclick="toggleShopDetails('shop-${idx}')" class="w-full flex items-center justify-between p-3 bg-white hover:bg-gray-50 transition-colors"><div class="flex items-center"><div class="w-8 h-8 rounded-full bg-journal-accent/10 flex items-center justify-center text-journal-accent mr-3 text-sm"><i class="fa-solid ${brand.icon}"></i></div><h4 class="font-bold text-journal-ink text-left">${brand.brand}</h4></div><i id="icon-shop-${idx}" class="fa-solid fa-chevron-down text-journal-brown text-sm transition-transform duration-300"></i></button>
                         <div id="shop-${idx}" class="hidden bg-journal-bg/20 border-t border-dashed border-journal-line p-3 space-y-3">
-                            ${brand.stores.map(store => `<div class="flex justify-between items-start text-xs pb-2 border-b border-journal-line/30 last:border-0 last:pb-0"><div><span class="inline-block px-1.5 py-0.5 rounded bg-white border border-journal-line text-journal-brown mb-1 scale-90 origin-left">${store.area}</span><p class="font-bold text-journal-ink text-sm">${store.name}</p><p class="text-gray-500 mt-0.5 leading-tight">${store.desc}</p></div><button onclick="openMap('${store.link}')" class="btn-hand bg-white border border-journal-line p-2 rounded text-journal-brown hover:text-journal-accent ml-2 shrink-0"><i class="fa-solid fa-location-arrow"></i></button></div>`).join('')}
+                            ${brand.stores.map(store => `<div class="flex justify-between items-start text-xs pb-2 border-b border-journal-line/30 last:border-0 last:pb-0"><div><span class="inline-block px-1.5 py-0.5 rounded bg-white border border-journal-line text-journal-brown mb-1 scale-90 origin-left">${store.area}</span><p class="font-bold text-journal-ink text-sm">${store.name}</p><p class="text-gray-500 mt-0.5 leading-tight">${store.desc}</p></div>${store.link ? `<button onclick="openMap('${store.link}')" class="btn-hand bg-white border border-journal-line p-2 rounded text-journal-brown hover:text-journal-accent ml-2 shrink-0"><i class="fa-solid fa-location-arrow"></i></button>` : ''}</div>`).join('')}
                         </div></div>`;
              });
              html += `</div></div>`;
