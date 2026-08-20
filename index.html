@@ -157,7 +157,7 @@
                     { time: "10:15", title: "早午餐：三井商店(場外市場)", desc: "備案！水產批發直營「三上商店(まるさん亭)」吃極鮮海鮮丼，不用去小樽人擠人。", icon: "fa-fish", link: "まるさん亭" },
                     { time: "11:30", title: "童話十字路口 ＆ 堺町通", desc: "開車抵達小樽。導航停周邊計時停車場(勿開進堺町通)。買好的伴手禮直接提回車上放！", icon: "fa-music", link: "Otaru Music Box Museum" },
                     { time: "14:45", title: "天狗山纜車 ＆ 滑草", desc: "開車至山麓站(免費大停車場超好停)。搭纜車看絕景、小孩體驗滑草。", icon: "fa-mountain", link: "Tenguyama Ropeway" },
-                    { time: "17:30", title: "小樽運河遊船 ＆ 點燈", desc: "把車停回運河區周邊。搭船(約40分)並欣賞魔幻夕陽與夜景。", icon: "fa-ship", link: "Otaru Canal Cruise", highlight: true },
+                    { time: "17:30", title: "小樽運河遊船 ＆ 點燈", desc: "把車停回運河區周邊。搭船(約40分)並欣賞魔幻夕陽與夜景。夏季營業至21:00左右，建議先網路預約！", icon: "fa-ship", link: "Otaru Canal Cruise", highlight: true },
                     { time: "19:30", title: "小樽晚餐時間", desc: "出拔小路吃輕食，或找間拉麵、壽司店悠哉吃晚餐。", icon: "fa-utensils" },
                     { time: "20:30", title: "開車返回札幌市區", desc: "走高速公路回札幌，車停中島公園宜必思特約停車場 (過夜 1,500 日圓)。", icon: "fa-car" }
                 ]
@@ -294,7 +294,7 @@
                     { title: "小樽音樂盒堂", mapQuery: "Otaru Music Box Museum", hours: "09:00-18:00", closed: "無", content: "門口有世界最大蒸汽鐘。LeTAO本店3F有免費觀景台。" },
                     { title: "堺町通 & 出拔小路", mapQuery: "Sakaimachi Hondori Street", hours: "依店家", closed: "無", content: "出拔小路有懷舊復古餐廳，有免費展望台看運河。" },
                     { title: "天狗山", mapQuery: "Tenguyama Ropeway", hours: "纜車依季節", closed: "天候不佳停駛", content: "搭纜車看三大夜景。有滑草、高空滑索、免費花栗鼠公園。" },
-                    { title: "小樽運河遊船", mapQuery: "Otaru Canal Cruise", hours: "日間/夜間航班", closed: "無", content: "船程約40分鐘。夜間看瓦斯燈浪漫倒影。" }
+                    { title: "小樽運河遊船", mapQuery: "Otaru Canal Cruise", hours: "10:30-21:00(夏季)", closed: "依官網", content: "分為日班與夜班，船程約40分鐘。夏季夜間熱門建議先網路預約。" }
                 ]
             },
             {
@@ -317,6 +317,12 @@
 
         // --- Shopping Data ---
         const shoppingData = [
+            {
+                brand: "日系平價服飾 (含男/童裝)", icon: "fa-shirt",
+                stores: [
+                    { area: "札幌白石", name: "coca ラソラ札幌店 (RaSora)", desc: "平價高質感服飾！這間分店特別有【男裝】與【童裝】，全家大小可以一起買。", link: "ラソラ札幌" }
+                ]
+            },
             {
                 brand: "動漫、玩具與卡牌", icon: "fa-gamepad",
                 stores: [
@@ -479,7 +485,7 @@
             "常備藥品 (腸胃藥、感冒藥、OK繃)", "折疊雨傘/輕便雨衣", "保養品/防曬"
         ];
         const shoppingListData = [
-            "肌膚之鑰 (大丸百貨或機場)", "寶可夢卡包 (Bic Camera或駿河屋)", "US 9號 Nike / HOKA 跑鞋", "六花亭 奶油夾心餅乾", "LeTAO 雙層起司蛋糕", "白色戀人 巧克力", "日本常備藥妝"
+            "coca 平價服飾 (RaSora札幌店)", "肌膚之鑰 (大丸百貨或機場)", "寶可夢卡包 (Bic Camera或駿河屋)", "US 9號 Nike / HOKA 跑鞋", "六花亭 奶油夾心餅乾", "LeTAO 雙層起司蛋糕", "白色戀人 巧克力", "日本常備藥妝"
         ];
 
         // --- State Management ---
@@ -693,7 +699,7 @@
                                     <div class="bg-yellow-50 border border-yellow-200 rounded p-3 mt-2 text-[11px] leading-relaxed shadow-sm">
                                         <span class="font-bold text-yellow-600 text-sm block mb-1"><i class="fa-solid fa-star"></i> 內行保證有位密技：</span>
                                         巴士發車順序為：國內線ANA(22號) -> 國內線JAL(14號) -> 國際線(84號)。<br>
-                                        為了避免客滿上不了車，抵達國際線出關後，強烈建議<span class="font-bold text-journal-ink">搭電梯上2樓，沿著連絡通道走（約10-15分鐘）到國內線1樓的「ANA前 22號站牌」</span>排隊上車，這裡是第一站，保證全家都有位子坐！
+                                        為了避免客滿上不了車，抵達國際線出關後，強烈建議<span class="font-bold text-journal-ink">搭電梯上2樓，沿著連絡通道走（約10-15分鐘）到國內線1樓の「ANA前 22號站牌」</span>排隊上車，這裡是第一站，保證全家都有位子坐！
                                     </div>
 
                                     <button onclick="window.open('https://www.chuo-bus.co.jp/highway.tw/airport/', '_blank')" class="mt-2 w-full text-xs flex justify-center items-center text-journal-blue hover:text-journal-accent transition-colors bg-blue-50 px-2 py-2 rounded border border-blue-100 font-bold"><i class="fa-solid fa-clock mr-1.5"></i> 點此查看官方中文時刻表</button>
@@ -716,10 +722,33 @@
                                 </div>
                             </div>
                             <!-- JR 北海道 -->
-                            <div>
+                            <div class="border-b border-journal-line/50 pb-4">
                                 <div class="flex items-center mb-2"><i class="fa-solid fa-train text-blue-600 w-6 text-center"></i><h4 class="font-bold text-journal-ink">JR 北海道</h4></div>
                                 <div class="pl-6 text-sm text-gray-600 space-y-1">
                                     <p>機場來回 (快速Airport) 或是前往小樽時搭乘。若有帶大件行李可考慮加購「U-Seat (指定席)」。</p>
+                                </div>
+                            </div>
+                            <!-- 百貨停車與折抵 -->
+                            <div class="bg-gray-50 rounded-lg p-3 border border-journal-line/50 mt-4">
+                                <div class="flex items-center mb-2"><i class="fa-solid fa-square-parking text-journal-ink w-6 text-center"></i><h4 class="font-bold text-journal-ink text-sm">札幌車站 百貨停車折抵密技</h4></div>
+                                <div class="pl-6 text-[11px] text-gray-600 space-y-1.5 leading-relaxed">
+                                    <p>大丸百貨、STELLAR PLACE、APIA、ESTA 享有**共同折抵**：</p>
+                                    <ul class="list-disc pl-3">
+                                        <li>上述百貨**合計消費滿 2,000 日圓**，即可**免費停車 2 小時**。</li>
+                                        <li><span class="font-bold text-red-500">切記：</span>結帳時務必將停車卡交給專櫃人員過卡紀錄！</li>
+                                    </ul>
+                                    <div class="mt-2 p-2 bg-white border border-gray-200 rounded text-[10px]">
+                                        <p class="font-bold text-journal-ink mb-1"><i class="fa-solid fa-map-pin text-journal-brown"></i> 首選停車場 (與大丸連通)：</p>
+                                        <p>大丸地下駐車場 (MAPCODE: <span class="font-bold font-mono text-journal-accent">9 522 368*30</span>)</p>
+                                        <p class="text-gray-400 mt-0.5 mb-1.5">*入口位於百貨北側 (鐵道高架橋下方)</p>
+                                        
+                                        <p class="font-bold text-journal-ink mb-1 border-t border-gray-100 pt-1.5"><i class="fa-solid fa-map-pin text-journal-brown"></i> 備用停車場 (客滿時替代)：</p>
+                                        <ul class="space-y-1">
+                                            <li>ESTA 駐車場 (MAPCODE: <span class="font-mono text-journal-accent">9 522 626*33</span>)</li>
+                                            <li>JR 55 Parking (MAPCODE: <span class="font-mono text-journal-accent">9 522 364*88</span>)</li>
+                                            <li>札幌駅北口地下 (MAPCODE: <span class="font-mono text-journal-accent">9 552 284*41</span>)</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
