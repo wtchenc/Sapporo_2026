@@ -187,7 +187,7 @@
                     { time: "11:30", title: "札幌啤酒博物館", desc: "搭巴士(240円)。了解啤酒歷史", icon: "fa-beer-mug-empty" },
                     { time: "13:00", title: "中餐", desc: "周邊用餐", icon: "fa-utensils" },
                     { time: "14:30", title: "寶可夢中心", desc: "大丸百貨 8F", icon: "fa-gamepad", highlight: true },
-                    { time: "16:00", title: "札幌車站百貨逛街", desc: "大丸、STELLAR PLACE、APIA、東急。買肌膚之鑰可在大丸1F！", icon: "fa-bag-shopping" },
+                    { time: "16:00", title: "札幌車站百貨逛街", desc: "大丸、STELLAR PLACE、APIA、東急。買肌膚之鑰可在大丸1F！若要買 NB/HOKA/On 等潮鞋，可去 STELLAR PLACE 5F。", icon: "fa-bag-shopping" },
                     { time: "18:00", title: "晚餐", desc: "車站周邊或地下街", icon: "fa-utensils" },
                     { time: "19:30", title: "JR塔 T38 展望台", desc: "360度絕美夜景", icon: "fa-moon" }
                 ]
@@ -276,7 +276,7 @@
             {
                 region: "札幌市區 (Sapporo)", anchor: "guide-sapporo",
                 items: [
-                    { title: "札幌諏ँग्रेस神社", mapQuery: "Sapporo Suwa Shrine", hours: "全天 (社務所 09:00-17:00)", closed: "無休", content: "札幌最紅的網美神社！以定期更換的華麗「花手水」、透明和傘裝飾聞名。販售的透明蕾絲御守與特色神籤非常受歡迎。" },
+                    { title: "札幌諏訪神社", mapQuery: "Sapporo Suwa Shrine", hours: "全天 (社務所 09:00-17:00)", closed: "無休", content: "札幌最紅的網美神社！以定期更換的華麗「花手水」、透明和傘裝飾聞名。販售的透明蕾絲御守與特色神籤非常受歡迎。" },
                     { title: "AOAO SAPPORO 水族館", mapQuery: "AOAO SAPPORO", hours: "10:00~22:00", closed: "無休", content: "位於狸小路，5樓開放攜帶外食。必看小藍企鵝與長冠企鵝餵食秀。" },
                     { title: "札幌電視塔", mapQuery: "Sapporo TV Tower", hours: "09:00–22:00", closed: "依季節調整", content: "高147公尺，可360度眺望札幌市容。" },
                     { title: "札幌市時計台", mapQuery: "Sapporo Clock Tower", hours: "08:45–17:10", closed: "每月不同", content: "象徵性歷史建築，建議在外拍照打卡。" },
@@ -321,6 +321,15 @@
         // --- Shopping Data ---
         const shoppingData = [
             {
+                brand: "潮鞋與特定鞋款 (NB / HOKA / On 等)", icon: "fa-shoe-prints",
+                stores: [
+                    { area: "札幌站", name: "ABC-MART GRAND STAGE (STELLAR PLACE 5F)", desc: "【推薦順路】最高等級旗艦店，NB 高階款、HOKA、On等熱門潮鞋款式最齊全！同棟有MUJI和3COINS，可一起買。", link: "ABC-MART GRAND STAGE 札幌ステラプレイス店" },
+                    { area: "札幌站周邊", name: "New Balance Hulic 札幌直營店", desc: "步行2-4分。北海道直營旗艦店。有 3D 掃描客製服務、最新型號與超齊全童鞋。", link: "ニューバランス 札幌" },
+                    { area: "札幌市區", name: "Mt.石井體育 (石井スポーツ 札幌店)", desc: "若想找 HOKA 或 On 的專業【越野跑鞋或登山鞋款】，這間專業戶外用品店的款式會比一般鞋店多。", link: "石井スポーツ 札幌店" },
+                    { area: "北廣島", name: "三井 Outlet Park 札幌北廣島", desc: "尋找 US 9 號 各品牌鞋款的好去處，款式豐富且有折扣。", link: "Mitsui Outlet Park Sapporo Kitahiroshima" }
+                ]
+            },
+            {
                 brand: "大型綜合商場 (AEON)", icon: "fa-store",
                 stores: [
                     { area: "札幌平岡", name: "AEON Mall 札幌平岡店", desc: "超大購物中心！1樓有3COINS+plus，以及ZAMST護具經銷點 MEGA SPORTS。", link: "イオンモール札幌平岡" },
@@ -362,8 +371,7 @@
                 stores: [
                     { area: "札幌站", name: "大丸百貨 (Daimaru)", desc: "8F 寶可夢中心。B1 美食與伴手禮。", link: "Daimaru Sapporo" },
                     { area: "札幌站", name: "STELLAR PLACE", desc: "品牌齊全，6F 無印良品。", link: "STELLAR PLACE SAPPORO" },
-                    { area: "札幌站", name: "APIA 地下街", desc: "平價服飾 (3COINS, niko and...)。", link: "APIA Sapporo" },
-                    { area: "北廣島", name: "三井 Outlet Park", desc: "找 US 9 號 Nike、HOKA 等款式豐富。", link: "Mitsui Outlet Park Sapporo Kitahiroshima" }
+                    { area: "札幌站", name: "APIA 地下街", desc: "平價服飾 (3COINS, niko and...)。", link: "APIA Sapporo" }
                 ]
             },
             {
@@ -507,7 +515,7 @@
             "常備藥品 (腸胃藥、感冒藥、OK繃)", "折疊雨傘/輕便雨衣", "保養品/防曬"
         ];
         const shoppingListData = [
-            "找 ZAMST 護具 (Xebio 或 Depo)", "3COINS (發寒 或 平岡 AEON)", "coca 平價服飾 (RaSora札幌店)", "肌膚之鑰 (大丸百貨或機場)", "寶可夢卡包 (Bic Camera或駿河屋)", "US 9號 Nike / HOKA 跑鞋", "六花亭 奶油夾心餅乾", "LeTAO 雙層起司蛋糕", "白色戀人 巧克力", "日本常備藥妝"
+            "找 NB / HOKA / On 潮鞋", "找 ZAMST 護具 (Xebio 或 Depo)", "3COINS (發寒 或 平岡 AEON)", "coca 平價服飾 (RaSora札幌店)", "肌膚之鑰 (大丸百貨或機場)", "寶可夢卡包 (Bic Camera或駿河屋)", "US 9號 Nike 跑鞋", "六花亭 奶油夾心餅乾", "LeTAO 雙層起司蛋糕", "白色戀人 巧克力", "日本常備藥妝"
         ];
 
         // --- State Management ---
